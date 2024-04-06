@@ -1,0 +1,12 @@
+.signup-form{
+    text-align: center;
+}
+
+.signup-form input{
+    margin: 1rem;
+}
+
+.signup-btn{
+    width: inherit;
+    height: 15%;
+}
