@@ -17,5 +17,13 @@
 
 .login-btn{
     width: inherit;
-    height: 15%;
+    height: 30px;
+    width: 260px;
+    font-size: large;
+}
+
+.input-field{
+    height: 30px;
+    width: 250px;
+    font-size: large;
 }
