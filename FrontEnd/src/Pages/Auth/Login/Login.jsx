@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom';
-import { GET_METHOD } from '../../../Backend/index';
+import axios from 'axios';
+// import { GET_METHOD } from '../../../Axios/axios';
 
 
 export default function Login() {
@@ -9,38 +10,38 @@ export default function Login() {
     const [pass, setPass] = useState('');
     const [confirmPass, setConfirmPass] = useState('');
 
-    const [data, setData] = useState({
-        email: '',
-        pass: ''
-    });
 
     const navigate = useNavigate();
 
-    const handleLoginForm = (e) => {
-        e.preventDefault();
-        if (email !== '' && pass !== '' && confirmPass !== '') {
-            if (pass === confirmPass) {
-                setData({
-                    email: email,
-                    pass: pass
-                })
-                GET_METHOD(`?Email=${email}&Password=${pass}`)
-            }
-            else {
-                window.alert('Pass and confirm pass should be same');
-            }
+    const handleLoginForm = async() => {
+        try {
+            const check = await axios.get(`https://n47nds7n-44338.inc1.devtunnels.ms/api/IMUserRegistration/AdminLogin?Email=${email}.com&Password=${pass}`)
+       console.log(`URL`,check.data);
 
         }
-        else {
-            window.alert('All fields are required');
+        catch(error){
+            console.log(error.message , 'error logging ');
         }
+       
+        // if (email !== '' && pass !== '' && confirmPass !== '') {
+        //     if (pass === confirmPass) {
+        //         GET_METHOD(`https://n47nds7n-44338.inc1.devtunnels.ms/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`)
+        //     }
+        //     else {
+        //         window.alert('Pass and confirm pass should be same');
+        //     }
+
+        // }
+        // else {
+        //     window.alert('All fields are required');
+        // }
     }
 
 
     return (
         <div className='login-form'>
             <h1>Login Form</h1>
-            <form className='form' onSubmit={handleLoginForm}>
+           
                 <input
                     placeholder='enter email'
                     className='input-field'
@@ -61,9 +62,8 @@ export default function Login() {
                     onChange={(e) => { setConfirmPass(e.target.value) }}
                 />
 
-                <button className='login-btn' >Login</button>
+                <button className='login-btn' onClick={handleLoginForm}>Login</button>
                 <p onClick={() => navigate('/signup')}>No account? want to create one ?</p>
-            </form>
         </div>
     )
 }

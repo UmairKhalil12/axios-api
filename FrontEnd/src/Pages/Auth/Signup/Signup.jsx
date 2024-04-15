@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Signup.css'
 import { useNavigate } from 'react-router-dom';
-import { GET_POST_METHOD } from '../../../Backend';
+import { GET_POST_METHOD } from '../../../Axios/axios';
 
 
 export default function Signup() {
@@ -34,19 +34,7 @@ export default function Signup() {
 
             try {
                 await GET_POST_METHOD(
-                    `?Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${pass}&Address=${address}&Location=${location}&ShowRoomName=${showRoom}&IdentificationNo=${identifcation}&ParentUserID=1&UserType=0`,
-                    {
-                        Name: name,
-                        Email: email,
-                        PhoneNo: phone,
-                        Password: pass,
-                        Address: address,
-                        Location: location,
-                        ShowRoomName: showRoom,
-                        IdentificationNo: identifcation,
-                        ParentUserID: 1,
-                        UserType: 0
-                    });
+                    `Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${pass}&Address=${address}&Location=${location}&ShowRoomName=${showRoom}&IdentificationNo=${identifcation}&ParentUserID=1&UserType=0`);
                 window.alert('User added successfully');
             } catch (error) {
                 console.error('Error creating user:', error);
