@@ -3,7 +3,7 @@
     margin-top: 5%;
 }
 
-.form {
+.form-log {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +11,7 @@
     
 }
 
-.form input{
+.form-log input{
     margin: 1rem;
 }
 

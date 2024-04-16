@@ -1,9 +1,15 @@
 import axios from 'axios'
 
+
 const GET_METHOD = async (link) => {
     try {
         const response = await axios.get(link);
-        console.log(response.data);
+        console.log('getmethod', response.data);
+        let userAuthenticated = localStorage.getItem('user');
+        if (!userAuthenticated) {
+            userAuthenticated = true;
+            localStorage.setItem('user', userAuthenticated);
+        }
         return response.data;
     }
     catch (error) {
@@ -12,14 +18,21 @@ const GET_METHOD = async (link) => {
 }
 
 const GET_POST_METHOD = async (link) => {
-    try {
-        const response = await axios.get('https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/Registeration?' + link);
-        console.log(response.data);
-        return response.data;
+    let userAuthenticated = localStorage.getItem('user');
+    if (!userAuthenticated) {
+        try {
+            const response = await axios.get(link);
+            console.log(response.data);
+            return response.data;
+        }
+        catch (error) {
+            console.log('error putting data , signing up', error.message);
+        }
     }
-    catch (error) {
-        console.log('error putting data , signing up', error.message);
+    else{
+        window.alert('user is already signedin'); 
     }
+
 }
 
 

@@ -2,6 +2,11 @@
     text-align: center;
 }
 
+.input-div{
+    display: flex;
+    justify-content: center;
+}
+
 .signup-form input{
     margin: 1rem;
 }
