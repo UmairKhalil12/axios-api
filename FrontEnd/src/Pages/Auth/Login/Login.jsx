@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 import { GET_METHOD } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
+import { useDispatch } from 'react-redux';
 
 
-export default function Login(user, setUser) {
+export default function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const dispatch  = useDispatch();
 
     const [message, setMessage] = useState(false);
 
@@ -28,7 +30,7 @@ export default function Login(user, setUser) {
         emailValidation(email);
         if (email !== '' && pass !== '') {
             if (message) {
-                GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`)
+                GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}` , dispatch)
             }
 
             else {

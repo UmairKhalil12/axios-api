@@ -1,17 +1,12 @@
-import { useEffect} from 'react';
+//import { useEffect, useState} from 'react';
 import './App.css';
 import Routing from './Routing/Routing'
+import { useSelector } from 'react-redux';
 
 
 function App() {
-  let user =  localStorage.setItem("user", false);
-  useEffect(() => {
-    localStorage.setItem("user", false);
-  }, [user])
-  
-  console.log(localStorage.getItem('user'));
-
-
+  const user = useSelector(state => state.user);
+  console.log('user app.js', user);
   return (
     <div>
       <Routing />
