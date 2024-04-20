@@ -28,7 +28,7 @@ export default function Home() {
       }
     };
     fetchData();
-  }, []);
+  }, [businessData , userID]);
 
   console.log('home page business data', businessData);
   //const businessData = useSelector(state => state.user.businessData);
