@@ -104,7 +104,7 @@ const GET_UPDATE_BY_USER = async (link) => {
 
 const GET_DELETE_BY_ID = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.delete(link);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
             console.log('get updated data by user', response.data);
