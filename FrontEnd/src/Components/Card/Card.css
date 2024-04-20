@@ -1,0 +1,19 @@
+.card-2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-2 p{
+    margin-left: 0.5rem;
+}
+
+.main-card{
+    padding: 1rem;
+    border: 1px solid black;
+}
+
+.card-img{
+    width: 250px;
+    height: 150px;
+}

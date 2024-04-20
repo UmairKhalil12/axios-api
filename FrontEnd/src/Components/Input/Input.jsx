@@ -3,7 +3,8 @@ import './Input.css';
 export default function Input({ label, placeholder, onChange, type, value }) {
     return (
         <div>
-            <label>{label}</label>
+            <label className='label'>{label}</label>
+            <br />
             <input
                 type={type}
                 placeholder={placeholder}

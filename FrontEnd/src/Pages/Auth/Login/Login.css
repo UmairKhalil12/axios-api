@@ -1,14 +1,12 @@
 .login-form{
     text-align: center;
-    margin-top: 5%;
+    margin-top: 6%;
 }
-
 .form-log {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    
+    flex-direction: column;    
 }
 
 .form-log input{
@@ -26,4 +24,14 @@
     height: 30px;
     width: 250px;
     font-size: large;
+}
+
+@media screen and (max-width : 550px) {
+    .input-field{
+        width: 180px;
+    }
+
+    .login-btn{
+        width: 190px;
+    }
 }

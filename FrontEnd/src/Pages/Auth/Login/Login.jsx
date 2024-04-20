@@ -5,34 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import { GET_METHOD } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
 import { useDispatch } from 'react-redux';
+import { emailValidation } from '../../../EmailValidation/EmaiValidation';
+import Navbar from '../../../Components/Navbar/Navbar'
 
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
-    const dispatch  = useDispatch();
-
-    const [message, setMessage] = useState(false);
-
-    const emailValidation = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(email)) {
-            setMessage(true);
-        }
-        else {
-            setMessage(false);
-        }
-    }
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLoginForm = async () => {
-        emailValidation(email);
         if (email !== '' && pass !== '') {
-            if (message) {
-                GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}` , dispatch)
+            if (emailValidation(email)) {
+                GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
             }
-
             else {
                 window.alert('email is not correct');
             }
@@ -43,28 +30,32 @@ export default function Login() {
 
     }
 
-
     return (
+        <>
+        <Navbar />
         <div className='login-form'>
             <h1>Login Form</h1>
 
             <div className='form-log'>
                 <Input
-                    placeholder='enter email'
+                    label='Enter Email'
+                    placeholder='abc@email.com'
                     className='input-field'
                     value={email}
                     onChange={(e) => { setEmail(e.target.value) }} />
 
                 <Input
-                    placeholder='enter password'
+                    label='Enter password'
+                    placeholder='password'
                     className='input-field'
                     value={pass}
                     onChange={(e) => { setPass(e.target.value) }}
                 />
 
                 <button className='login-btn' onClick={handleLoginForm}>Login</button>
-                <p onClick={() => navigate('/signup')}>No account? want to create one ?</p>
+                <p style={{ color: 'blue' }} onClick={() => navigate('/signup')}>No account? want to create one ?</p>
             </div>
         </div>
+        </>
     )
 }

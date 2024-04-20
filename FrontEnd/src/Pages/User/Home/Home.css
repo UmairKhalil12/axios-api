@@ -1,7 +1,13 @@
 .main-home{
+  text-align: center;
+}
+
+.card-div{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card-div-2{
+    margin: 1rem;
 }

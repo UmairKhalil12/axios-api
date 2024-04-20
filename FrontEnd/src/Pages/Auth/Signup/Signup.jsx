@@ -3,21 +3,11 @@ import './Signup.css'
 import { useNavigate } from 'react-router-dom';
 import { GET_POST_METHOD } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
+import { emailValidation } from '../../../EmailValidation/EmaiValidation';
+import Navbar from '../../../Components/Navbar/Navbar';
 
 
 export default function Signup() {
-
-    const [message, setMessage] = useState(false);
-
-    const emailValidation = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(email)) {
-            setMessage(true);
-        }
-        else {
-            setMessage(false);
-        }
-    }
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -33,10 +23,9 @@ export default function Signup() {
 
     const handleSignForm = async (e) => {
         e.preventDefault();
-        emailValidation(email);
         if (name !== '' && email !== '' && phone !== '' && pass !== ''
             && address !== '' && location !== '' && showRoom !== '' && identifcation !== '') {
-            if (message) {
+            if (emailValidation(email)) {
                 if (pass === confirmPass) {
                     try {
                         await GET_POST_METHOD(
@@ -62,85 +51,98 @@ export default function Signup() {
 
 
     return (
-        <div className='signup-form'>
-            <h1>Signup Form</h1>
-            <div className='form-log'>
-                <div className='input-div'>
-                    <Input
-                        placeholder='enter name'
-                        value={name}
-                        className='input-field'
-                        onChange={(e) => setName(e.target.value)}
-                    />
+        <>
+        <Navbar />
+            <div className='signup-form'>
+                <h1>Signup Form</h1>
+                <div className='form-log'>
+                    <div className='input-div'>
+                        <Input
+                            label='Enter name'
+                            placeholder='john'
+                            value={name}
+                            className='input-field'
+                            onChange={(e) => setName(e.target.value)}
+                        />
+
+                        <Input
+                            label='Enter Email'
+                            placeholder='john@gmail.com'
+                            value={email}
+                            className='input-field'
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='input-div'>
+                        <Input
+                            label='Enter Phone Number'
+                            placeholder='0213471154'
+                            value={phone}
+                            className='input-field'
+                            onChange={(e) => setPhone(e.target.value)}
+                        />
+
+                        <Input
+                            label='Enter Password'
+                            placeholder='password'
+                            value={pass}
+                            className='input-field'
+                            onChange={(e) => setPass(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='input-div'>
+                        <Input
+
+                            label='Confirm Password'
+                            placeholder='confirm password'
+                            className='input-field'
+                            value={confirmPass}
+                            onChange={(e) => { setConfirmPass(e.target.value) }}
+                        />
+
+                        <Input
+                            label='Enter Address'
+                            placeholder='address'
+                            value={address}
+                            className='input-field'
+                            onChange={(e) => setAddress(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='input-div'>
+                        <Input
+                            label='Enter Location'
+                            placeholder='20'
+                            value={location}
+                            className='input-field'
+                            onChange={(e) => setLocation(e.target.value)}
+
+                        />
+
+                        <Input
+                            label='Enter Show Room '
+                            placeholder='showroom'
+                            value={showRoom}
+                            className='input-field'
+                            onChange={(e) => setShowRoom(e.target.value)}
+                        />
+                    </div>
 
                     <Input
-                        placeholder='enter email'
-                        value={email}
+                        label='Enter Identifcation Number'
+                        placeholder='42'
+                        value={identifcation}
                         className='input-field'
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setIdentification(e.target.value)}
                     />
+
+                    <button className='login-btn' type='submit' onClick={handleSignForm}>Signup</button>
+                    <p style={{ color: 'blue' }} onClick={() => navigate('/login')}>already have an account? Login.</p>
                 </div>
 
-                <div className='input-div'>
-                    <Input
-                        placeholder='enter phone number'
-                        value={phone}
-                        className='input-field'
-                        onChange={(e) => setPhone(e.target.value)}
-                    />
-
-                    <Input
-                        placeholder='enter password'
-                        value={pass}
-                        className='input-field'
-                        onChange={(e) => setPass(e.target.value)}
-                    />
-                </div>
-
-                <div className='input-div'>
-                    <Input
-                        placeholder='confirm password'
-                        className='input-field'
-                        value={confirmPass}
-                        onChange={(e) => { setConfirmPass(e.target.value) }}
-                    />
-
-                    <Input
-                        placeholder='enter address'
-                        value={address}
-                        className='input-field'
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                </div>
-
-                <div className='input-div'>
-                    <Input
-                        placeholder='enter location'
-                        value={location}
-                        className='input-field'
-                        onChange={(e) => setLocation(e.target.value)}
-
-                    />
-
-                    <Input
-                        placeholder='enter show room name'
-                        value={showRoom}
-                        className='input-field'
-                        onChange={(e) => setShowRoom(e.target.value)}
-                    />
-                </div>
-
-                <Input
-                    placeholder='enter identifcation number'
-                    value={identifcation}
-                    className='input-field'
-                    onChange={(e) => setIdentification(e.target.value)}
-                />
-
-                <button className='login-btn' type='submit' onClick={handleSignForm}>Signup</button>
-                <p onClick={() => navigate('/login')}>already have an account? Login.</p>
             </div>
-
-        </div>
+        </>
     )
 }
