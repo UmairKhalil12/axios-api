@@ -1,13 +1,25 @@
-.main-home{
+.main-home {
   text-align: center;
 }
 
-.card-div{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.card-div {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
-.card-div-2{
-    margin: 1rem;
+.card-div-2 {
+  margin: 1rem;
+  width: 25%;
+}
+
+@media screen and (max-width : 768px) {
+  .card-div{
+    display: flex;
+    justify-content: center;
+  }
+  .card-div-2 {
+    margin-bottom: 0; 
+    width: 70%;
+  }
 }

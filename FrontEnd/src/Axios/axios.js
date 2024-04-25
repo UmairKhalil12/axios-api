@@ -102,6 +102,20 @@ const GET_UPDATE_BY_USER = async (link) => {
     }
 }
 
+const GET_BUSINESS_BY_ID = async (link) => {
+    try {
+        const response = await axios.get(link);
+        if (Array.isArray(response.data) && response.data.length > 0) {
+            console.log('get business by id', response.data);
+            return response.data;
+        }
+    }
+    catch (error) {
+        console.log('Error getting business by id', error.message);
+        console.log('Error getting business by id', error);
+    }
+}
+
 const GET_DELETE_BY_ID = async (link) => {
     try {
         const response = await axios.delete(link);
@@ -124,5 +138,6 @@ export {
     UPDATE_DATA,
     GET_DATA_BY_USER,
     GET_UPDATE_BY_USER,
-    GET_DELETE_BY_ID
+    GET_DELETE_BY_ID,
+    GET_BUSINESS_BY_ID
 };

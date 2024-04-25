@@ -7,31 +7,27 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogout, userInfo } from '../../store/userSlice';
+import Button from '../Button/Button';
 
 export default function Navbar() {
     const navigate = useNavigate();
     const [toggleMenu, setToggleMenu] = useState(false);
     const user = useSelector(state => state.user.user);
     const userData = useSelector(state => state.user.userData);
-
     const dispatch = useDispatch();
 
     const handleSignout = () => {
         dispatch(userLogout(false));
         dispatch(userInfo([]));
-    }
+    };
 
     const handleToggleMenu = () => {
-        setToggleMenu(!toggleMenu)
-    }
+        setToggleMenu(!toggleMenu);
+    };
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth <= 800) {
-                setToggleMenu(true);
-            } else {
-                setToggleMenu(false);
-            }
+            setToggleMenu(window.innerWidth <= 800);
         };
 
         handleResize();
@@ -43,53 +39,33 @@ export default function Navbar() {
     }, []);
 
     return (
-        <>
-            <div className={toggleMenu ? 'navbar' : ''}>
-                <div className={toggleMenu ? 'navbar-main-responsive' : 'navbar-main'}>
-                    <div className={toggleMenu ? 'navbar-main-logo-responsive' : 'navbar-main-logo'}>
-                        <h2>BLOGGG</h2>
-                    </div>
-
-                    <div className={toggleMenu ? 'navbar-main-link-responsive' : 'navbar-main-link'}>
-                        <p onClick={() => navigate('/home')} >Home</p>
-                        {/* <p onClick={() => navigate('/about')} >About</p> */}
-                        {user ? <p onClick={() => navigate('/adddata')}>Add Data</p> : ''}
-                    </div>
-
-                    <div className={toggleMenu ? 'navbar-main-login-responsive' : 'navbar-main-login'}>
-                        {user ?
-                            (<>
-                                <div className='navbar-profile'>
-                                    <CgProfile size={30} className='profile-nav' />
-                                    <p className='navbar-profile-name' >{userData[0].Name}</p>
-                                </div>
-                                <button onClick={handleSignout}>signout</button>
-                            </>
-                            ) :
-                            <>
-                                <div className='nav-signup-login-btn'>
-                                    <button onClick={()=>navigate('/signup')}>Signup</button>
-                                    <button onClick={()=>navigate('/login')} >Login</button>
-                                </div>
-                            </>}
-                    </div>
-
-                    <div className='navbar-main-icon' onClick={handleToggleMenu} >
-
-                        {
-                            toggleMenu ?
-                                <div className='nav-icon'>
-                                    <IoCloseSharp size={25} />
-                                </div> :
-
-                                <div>
-                                    <IoMdMenu size={25} />
-                                </div>
-                        }
-
-                    </div>
+        <div className={`navbar ${toggleMenu ? 'navbar-open' : ''}`}>
+            <div className={`navbar-main ${toggleMenu ? 'navbar-main-open' : ''}`}>
+                <div className="navbar-main-logo">
+                    <h2 onClick={() => navigate('/home')}>BUSINESSES</h2>
+                </div>
+                <div className="navbar-main-links">
+                    {user && <p onClick={() => navigate('/home')}>Home</p>}
+                    {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
+                </div>
+                <div className="navbar-main-actions">
+                    {user ? (
+                        <div className="navbar-profile" onClick={() => navigate('/home')}>
+                            <CgProfile size={30} className="profile-nav" />
+                            <p className="navbar-profile-name">{userData[0].Name}</p>
+                        </div>
+                    ) : (
+                        <div className="nav-signup-login-btn">
+                            <Button onClick={() => navigate('/signup')} text="Signup" />
+                            <Button onClick={() => navigate('/login')} text="Login" />
+                        </div>
+                    )}
+                    {user && <Button onClick={handleSignout} text="Signout" />}
+                </div>
+                <div className="navbar-main-icon" onClick={handleToggleMenu}>
+                    {toggleMenu ? <IoCloseSharp size={25} /> : <IoMdMenu size={25} />}
                 </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }

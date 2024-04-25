@@ -7,12 +7,9 @@ import Navbar from '../../../Components/Navbar/Navbar';
 import Card from '../../../Components/Card/Card';
 import { GET_DATA_BY_USER } from '../../../Axios/axios';
 
-
-
-
 export default function Home() {
   const [businessData, setBusinessData] = useState();
-  const userData = useSelector(state => state.user.userData);
+  const userData = useSelector(state => state?.user?.userData);
   const userID = userData[0].UserID;
   console.log('homepage', userID)
 
@@ -28,7 +25,7 @@ export default function Home() {
       }
     };
     fetchData();
-  }, [businessData , userID]);
+  }, [businessData, userID]);
 
   console.log('home page business data', businessData);
   //const businessData = useSelector(state => state.user.businessData);
@@ -45,16 +42,15 @@ export default function Home() {
               return (
                 <div className='card-div-2'>
                   <Card
-                    key={index + business.BusinessName}
-                    image={business.BusinessLogo}
-                    name={business.BusinessName}
-                    ownerName={business.BusinessOwnerName}
-                    website={business.WebSite}
-                    email={business.Email}
-                    phone={business.BusinessNumber}
-                    index={business.Id}
+                    key={index + business?.BusinessName}
+                    image={business?.BusinessLogo}
+                    name={business?.BusinessName}
+                    ownerName={business?.BusinessOwnerName}
+                    website={business?.WebSite}
+                    email={business?.Email}
+                    phone={business?.BusinessNumber}
+                    index={business?.Id}
                   />
-
                 </div>
               )
             })}

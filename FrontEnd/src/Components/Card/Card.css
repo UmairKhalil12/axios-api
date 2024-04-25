@@ -1,19 +1,61 @@
-.card-2{
+.main-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.heading-card {
+    font-weight: 700;
+    font-size: 22px;
+    color: #333; 
+}
+
+.card-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px; 
+}
+
+.ownername {
+    text-align: center;
+    font-size: 16px;
+    color: #666; 
+}
+
+.card-2 {
+    display: flex;
+    align-items: center;
+    margin-top: 8px; 
+}
+
+.card-edit-delete-button{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 8px; 
 }
 
-.card-2 p{
-    margin-left: 0.5rem;
+.card-2 p {
+    margin: 0;
+    font-size: 14px;
+    color: #444; 
 }
 
-.main-card{
-    padding: 1rem;
-    border: 1px solid black;
+.main-card {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+    background: linear-gradient(to bottom, #f8f8f8, #e0e0e0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: box-shadow 0.3s ease; 
 }
 
-.card-img{
-    width: 250px;
-    height: 150px;
+.main-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+}
+
+.card-img {
+    width: 100%;
+    height: 150px; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
 }

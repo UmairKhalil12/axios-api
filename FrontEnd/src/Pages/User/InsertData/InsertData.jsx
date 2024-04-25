@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { emailValidation } from '../../../EmailValidation/EmaiValidation';
 import { INSERT_DATA } from '../../../Axios/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../Components/Input/Input';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GET_UPDATE_BY_USER } from '../../../Axios/axios';
+import Navbar from '../../../Components/Navbar/Navbar';
+import { GET_BUSINESS_BY_ID } from '../../../Axios/axios';
 
 
 export default function InsertData() {
@@ -19,6 +21,8 @@ export default function InsertData() {
     const [website, setWebsite] = useState('');
     const [businessAddress, setBusinessAddress] = useState('');
 
+    const [idBusiness, setIdBusiness] = useState();
+
     const dispatch = useDispatch();
 
     const userData = useSelector(state => state.user.userData);
@@ -26,6 +30,30 @@ export default function InsertData() {
         return userData[0].UserID
     }
     const UserID = userId();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessGetById?Id=${id}`)
+                .then((res) => {
+                    setBusinessName(res[0].BusinessName);
+                    setBusinessLogo(res[0].BusinessLogo);
+                    setBusinessOwnerName(res[0].BusinessOwnerName);
+                    setBusinessNumber(res[0].BusinessNumber);
+                    setEmail(res[0].Email);
+                    setPhone(res[0].PhoneNumber);
+                    setWebsite(res[0].WebSite);
+                    setBusinessAddress(res[0].BusinessAddress);
+                })
+            setIdBusiness(res);
+        }
+
+        if (id) {
+            fetchData();
+        }
+    }, [id])
+
+    console.log('id business', idBusiness);
+
 
     const handleInsertForm = async (e) => {
         e.preventDefault();
@@ -37,14 +65,6 @@ export default function InsertData() {
                         await INSERT_DATA(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessOn?BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&CreateBy=${UserID}`, dispatch)
                             .then(() => {
                                 window.alert('Data Inserted Successfully');
-                                // setBusinessName('');
-                                // setBusinessLogo('');
-                                // setBusinessOwnerName('');
-                                // setBusinessNumber('');
-                                // setEmail('');
-                                // setPhone('');
-                                // setWebsite('');
-                                // setBusinessAddress('');
                                 navigate('/home')
                             })
                     } catch (error) {
@@ -70,14 +90,6 @@ export default function InsertData() {
                         await GET_UPDATE_BY_USER(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessOn?Id=${id}&BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&ModifyBy=${UserID}`)
                             .then(() => {
                                 window.alert('data update sucessfully');
-                                // setBusinessName('');
-                                // setBusinessLogo('');
-                                // setBusinessOwnerName('');
-                                // setBusinessNumber('');
-                                // setEmail('');
-                                // setPhone('');
-                                // setWebsite('');
-                                // setBusinessAddress('');
                                 navigate('/home');
                             })
                     }
@@ -100,8 +112,9 @@ export default function InsertData() {
 
     return (
         <div>
+            <Navbar />
             <div className='signup-form'>
-                <h1>{id ? 'Update Form' : 'Signup Form'}</h1>
+                <h1>{id ? 'Update Data' : 'Add Data'}</h1>
                 <div className='form-log'>
                     <div className='input-div'>
                         <Input
@@ -177,7 +190,7 @@ export default function InsertData() {
                         />
                     </div>
 
-                    <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Add Data' : 'Update Data'}</button>
+                    <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button>
                 </div>
 
             </div>

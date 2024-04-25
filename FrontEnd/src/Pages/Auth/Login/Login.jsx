@@ -19,6 +19,9 @@ export default function Login() {
         if (email !== '' && pass !== '') {
             if (emailValidation(email)) {
                 GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
+                .then(()=>{
+                    navigate('/home');
+                })
             }
             else {
                 window.alert('email is not correct');

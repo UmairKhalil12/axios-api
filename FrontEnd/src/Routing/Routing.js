@@ -5,6 +5,7 @@ import Signup from '../Pages/Auth/Signup/Signup';
 import Home from '../Pages/User/Home/Home';
 import { useSelector } from 'react-redux';
 import InsertData from "../Pages/User/InsertData/InsertData";
+import { Navigate } from "react-router-dom";
 
 export default function Routing() {
     const origUser = useSelector(state => state.user);
@@ -31,14 +32,23 @@ export default function Routing() {
     return (
         <BrowserRouter>
             <Routes>
-                {origUser.user ? <Route path='/' element={<Home />} /> : <Route path='/' element={<Login />} />}
-                {origUser.user ? <Route path='/home' element={<Home />} /> : <Route path='/home' element={<Login />} />}
-                {origUser.user ? <Route path='/login' element={<Home />} /> : <Route path='/login' element={<Login />} />}
-                {origUser.user ? <Route path='/signup' element={<Home />} /> : <Route path='/signup' element={<Signup />} />}
-                {origUser.user ? <Route path='/adddata' element={<InsertData />} /> : <Route path='/adddata' element={<Login />} />}
-                {origUser.user ? <Route path='/updatedata/:id' element={<InsertData/>} /> : <Route path='/adddata' element={<Login />} />}
-
-            </Routes>
+    {origUser.user ? (
+        <>
+            <Route path='/' element={<Home />} />
+            <Route path='/home' element={<Home />} />
+            <Route path='/adddata' element={<InsertData />} />
+            <Route path='/updatedata/:id' element={<InsertData />} />
+            <Route path='*' element={<Navigate to="/" />} />
+        </>
+    ) : (
+        <>
+            <Route path='/' element={<Login />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='*' element={<Navigate to="/" />} />
+        </>
+    )}
+</Routes>
         </BrowserRouter>
     );
 }
