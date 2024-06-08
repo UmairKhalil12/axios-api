@@ -10,7 +10,7 @@ export default function Business() {
     const [business, setBusiness] = useState([]);
     const fetchData = async () => {
         try {
-            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/IMBusiness/BusinessGetById?Id=${ID}`);
+            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessGetById?Id=${ID}`);
             setBusiness(res);
         }
         catch (error) {
@@ -23,7 +23,7 @@ export default function Business() {
     return (
         <div>
             <h1>Business Data</h1>
-            {business?.map((index, value) => {
+            {business?.map((value, index) => {
                 return (
                     <div>
                         {console.log('business by id', value)}
