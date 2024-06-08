@@ -6,6 +6,7 @@ import Home from '../Pages/User/Home/Home';
 import { useSelector } from 'react-redux';
 import InsertData from "../Pages/User/InsertData/InsertData";
 import { Navigate } from "react-router-dom";
+import Business from "../Pages/User/Business/Business";
 
 export default function Routing() {
     const origUser = useSelector(state => state.user);
@@ -38,6 +39,7 @@ export default function Routing() {
             <Route path='/home' element={<Home />} />
             <Route path='/adddata' element={<InsertData />} />
             <Route path='/updatedata/:id' element={<InsertData />} />
+            <Route path = '/showBusiness/:id' element = {<Business />} />
             <Route path='*' element={<Navigate to="/" />} />
         </>
     ) : (

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import './Navbar.css'
+import { useState } from 'react';
+import './Navbar.css';
 import { IoMdMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { useSelector } from 'react-redux';
@@ -25,18 +25,18 @@ export default function Navbar() {
         setToggleMenu(!toggleMenu);
     };
 
-    useEffect(() => {
-        const handleResize = () => {
-            setToggleMenu(window.innerWidth <= 800);
-        };
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         setToggleMenu(window.innerWidth <= 800);
+    //     };
 
-        handleResize();
-        window.addEventListener('resize', handleResize);
+    //     handleResize();
+    //     window.addEventListener('resize', handleResize);
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, []);
 
     return (
         <div className={`navbar ${toggleMenu ? 'navbar-open' : ''}`}>
@@ -44,24 +44,55 @@ export default function Navbar() {
                 <div className="navbar-main-logo">
                     <h2 onClick={() => navigate('/home')}>BUSINESSES</h2>
                 </div>
-                <div className="navbar-main-links">
-                    {user && <p onClick={() => navigate('/home')}>Home</p>}
-                    {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
-                </div>
-                <div className="navbar-main-actions">
-                    {user ? (
-                        <div className="navbar-profile" onClick={() => navigate('/home')}>
-                            <CgProfile size={30} className="profile-nav" />
-                            <p className="navbar-profile-name">{userData[0].Name}</p>
+                {toggleMenu ? (
+                    <div className="navbar-main-links">
+                        <div>
+                            {user && <p onClick={() => navigate('/home')}>Home</p>}
+                            {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
                         </div>
-                    ) : (
-                        <div className="nav-signup-login-btn">
-                            <Button onClick={() => navigate('/signup')} text="Signup" />
-                            <Button onClick={() => navigate('/login')} text="Login" />
+                        {user && (
+                            <div className="navbar-profile" onClick={() => navigate('/home')}>
+                                <CgProfile size={30} className="profile-nav" />
+                                <p className="navbar-profile-name">{userData[0].Name}</p>
+                            </div>
+                        )}
+                        {!user && (
+                            <div className="nav-signup-login-btn">
+                                <Button onClick={() => navigate('/signup')} text="Signup" />
+                                <Button onClick={() => navigate('/login')} text="Login" />
+                            </div>
+                        )}
+                        {user ? <Button text="Signout" onClick={() => { handleSignout() }} /> : ""}
+                    </div>
+                ) : (
+                    <div className='navbar-links'>
+                        <div className="navbar-main-links-open">
+                            {user && <p onClick={() => navigate('/home')}>Home</p>}
+                            {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
                         </div>
-                    )}
-                    {user && <Button onClick={handleSignout} text="Signout" />}
-                </div>
+                        <div>
+                            {user && (
+                                <div className="navbar-profile" onClick={() => navigate('/home')}>
+                                    <CgProfile size={30} className="profile-nav" />
+                                    <p className="navbar-profile-name">{userData[0].Name}</p>
+                                </div>
+                            )}
+                        </div>
+                        <div>
+                            {!user && (
+                                <div className="nav-signup-login-btn-off">
+                                    <Button onClick={() => navigate('/signup')} text="Signup" />
+                                    <Button onClick={() => navigate('/login')} text="Login" />
+                                </div>
+                            )}
+                        </div>
+                        <div className='navbar-signout-btn'>
+                            {user ? <Button text="Signout" onClick={() => { handleSignout() }} /> : ""}
+                        </div>
+                    </div>
+                )
+                }
+
                 <div className="navbar-main-icon" onClick={handleToggleMenu}>
                     {toggleMenu ? <IoCloseSharp size={25} /> : <IoMdMenu size={25} />}
                 </div>

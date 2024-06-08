@@ -6,11 +6,13 @@ import { useSelector } from 'react-redux';
 import Navbar from '../../../Components/Navbar/Navbar';
 import Card from '../../../Components/Card/Card';
 import { GET_DATA_BY_USER } from '../../../Axios/axios';
+import bg from '../../../images/bg.jpg'
 
 export default function Home() {
   const [businessData, setBusinessData] = useState();
   const userData = useSelector(state => state?.user?.userData);
   const userID = userData[0].UserID;
+
   console.log('homepage', userID)
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function Home() {
       try {
         if (userID) {
           const data = await GET_DATA_BY_USER(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/GetById?CreateBy=${userID}`);
-          setBusinessData(data)
+          setBusinessData(data);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -33,9 +35,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className='main-home'>
+      <div className='main-home' style={{backgroundImage : `url(${bg})`}} >
         <div>
-          <h1>Home page</h1>
+          <h1 className='home-heading' >Home page</h1>
           {/* <button onClick={handleSignout} className='login-btn'>Signout</button> */}
           <div className='card-div'>
             {businessData?.map((business, index) => {

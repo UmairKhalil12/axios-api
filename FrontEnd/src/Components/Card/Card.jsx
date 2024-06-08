@@ -22,7 +22,7 @@ export default function Card({ name, ownerName, website, phone, email, address, 
 
     const navigate = useNavigate();
     return (
-        <div className='main-card'>
+        <div className='main-card' onClick={()=>navigate(`/showBusiness/${index}`)}>
             <div className='card-1'>
                 <p className='heading-card'>{name}</p>
                 <img src={image} alt={name} className='card-img' />

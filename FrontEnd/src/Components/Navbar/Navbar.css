@@ -1,11 +1,10 @@
 /* Navbar CSS */
 .navbar {
-    background-color: #fff;
+    /* background-color: #fff; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: height 0.3s ease;
-    /* position: sticky;
-    top: 0;
-    left: 0; */
+    background-color: #262626;
+    color: #ddd;
 }
 
 .navbar-main {
@@ -17,14 +16,21 @@
 
 .navbar-main-logo h2 {
     font-size: 1.5rem;
-    color: #333;
+    /* color: #333; */
     cursor: pointer;
     margin: 0;
 }
 
-.navbar-main-links{
+/* .navbar-main-links{
     display: flex;
     justify-content: space-between;
+} */
+
+.navbar-main-links-open{
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
 }
 
 .navbar-main-links p {
@@ -39,7 +45,9 @@
 }
 
 .navbar-profile {
+    width: 150px;
     display: flex;
+    justify-content: space-around;
     align-items: center;
     cursor: pointer;
 }
@@ -47,11 +55,13 @@
 .navbar-profile-name {
     margin-right: 1rem;
     font-weight: bold;
-    color: #333;
+    color: #ddd;
 }
 
-.nav-signup-login-btn button {
-    margin-left: 0.5rem;
+.nav-signup-login-btn , .nav-signup-login-btn-off{
+    display: flex;
+    justify-content: space-between;
+    width: 110px;
 }
 
 .navbar-main-icon {
@@ -59,19 +69,22 @@
     cursor: pointer;
 }
 
-.navbar-main-actions{
+.navbar-links{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
-
 /* Responsive Styles */
 @media screen and (max-width: 800px) {
-
     .navbar-main-links,
-    .navbar-main-actions {
+    .navbar-main-actions,
+    .nav-signup-login-btn {
         display: flex;
         flex-direction: column;
+    }
+
+    .nav-signup-login-btn button{
+        margin-bottom: 1rem;
     }
 
     .navbar-main-icon {
@@ -85,5 +98,20 @@
 
     .navbar-main-icon {
         margin-top: 0.5rem;
+        margin-right: 0; /* Reset right margin for the icon */
     }
+
+    .nav-signup-login-btn {
+        margin-top: 0.5rem; /* Adjust top margin for buttons */
+    }
+
+    .nav-signup-login-btn-off{
+        display: none;
+    }
+
+    .navbar-main-links-open , .navbar-profile , .navbar-signout-btn{
+        display: none;
+    }
+
+    
 }

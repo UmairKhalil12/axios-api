@@ -6,8 +6,8 @@ import { GET_METHOD } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
 import { useDispatch } from 'react-redux';
 import { emailValidation } from '../../../EmailValidation/EmaiValidation';
-import Navbar from '../../../Components/Navbar/Navbar'
-
+import FormButton from '../../../Components/FormButton/FormButton';
+import user_img from '../../../images/user-icon.png'
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -15,13 +15,14 @@ export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLoginForm = async () => {
+    const handleLoginForm = async (e) => {
+        e.preventDefault();
         if (email !== '' && pass !== '') {
             if (emailValidation(email)) {
-                GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
-                .then(()=>{
-                    navigate('/home');
-                })
+                await GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
+                    .then(() => {
+                        navigate('/home');
+                    })
             }
             else {
                 window.alert('email is not correct');
@@ -35,30 +36,32 @@ export default function Login() {
 
     return (
         <>
-        <Navbar />
-        <div className='login-form'>
-            <h1>Login Form</h1>
+            <div className='login-form'>
+                <form className='form-log' onSubmit={handleLoginForm}>
+                    <div>
+                        <img src={user_img} alt='user icon png' className='user-icon' />
+                    </div>
+                    <Input
+                        placeholder='Email'
+                        className='input-field'
+                        value={email}
+                        type="email"
+                        onChange={(e) => { setEmail(e.target.value) }}
+                    />
 
-            <div className='form-log'>
-                <Input
-                    label='Enter Email'
-                    placeholder='abc@email.com'
-                    className='input-field'
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value) }} />
+                    <Input
+                        placeholder='Password'
+                        className='input-field'
+                        value={pass}
+                        type="password"
+                        onChange={(e) => { setPass(e.target.value) }}
+                    />
 
-                <Input
-                    label='Enter password'
-                    placeholder='password'
-                    className='input-field'
-                    value={pass}
-                    onChange={(e) => { setPass(e.target.value) }}
-                />
+                    <FormButton text="Login" />
+                    <p className="signup-para" onClick={() => navigate('/signup')}>No account? Signup.</p>
 
-                <button className='login-btn' onClick={handleLoginForm}>Login</button>
-                <p style={{ color: 'blue' }} onClick={() => navigate('/signup')}>No account? want to create one ?</p>
+                </form>
             </div>
-        </div>
         </>
     )
 }

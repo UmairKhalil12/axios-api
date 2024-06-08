@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { GET_POST_METHOD } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
 import { emailValidation } from '../../../EmailValidation/EmaiValidation';
-import Navbar from '../../../Components/Navbar/Navbar';
+import FormButton from "../../../Components/FormButton/FormButton"
+//import Navbar from '../../../Components/Navbar/Navbar';
 
 
 export default function Signup() {
@@ -52,22 +53,18 @@ export default function Signup() {
 
     return (
         <>
-        <Navbar />
             <div className='signup-form'>
-                <h1>Signup Form</h1>
                 <div className='form-log'>
                     <div className='input-div'>
                         <Input
-                            label='Enter name'
-                            placeholder='john'
+                            placeholder='Name'
                             value={name}
                             className='input-field'
                             onChange={(e) => setName(e.target.value)}
                         />
 
                         <Input
-                            label='Enter Email'
-                            placeholder='john@gmail.com'
+                            placeholder='Enter Email'
                             value={email}
                             className='input-field'
                             onChange={(e) => setEmail(e.target.value)}
@@ -76,16 +73,14 @@ export default function Signup() {
 
                     <div className='input-div'>
                         <Input
-                            label='Enter Phone Number'
-                            placeholder='0213471154'
+                            placeholder='Enter Phone Number'
                             value={phone}
                             className='input-field'
                             onChange={(e) => setPhone(e.target.value)}
                         />
 
                         <Input
-                            label='Enter Password'
-                            placeholder='password'
+                            placeholder='Enter Password'
                             value={pass}
                             className='input-field'
                             onChange={(e) => setPass(e.target.value)}
@@ -94,17 +89,14 @@ export default function Signup() {
 
                     <div className='input-div'>
                         <Input
-
-                            label='Confirm Password'
-                            placeholder='confirm password'
+                            placeholder='Confirm Password'
                             className='input-field'
                             value={confirmPass}
                             onChange={(e) => { setConfirmPass(e.target.value) }}
                         />
 
                         <Input
-                            label='Enter Address'
-                            placeholder='address'
+                            placeholder='Enter Address'
                             value={address}
                             className='input-field'
                             onChange={(e) => setAddress(e.target.value)}
@@ -113,8 +105,7 @@ export default function Signup() {
 
                     <div className='input-div'>
                         <Input
-                            label='Enter Location'
-                            placeholder='20'
+                            placeholder='Enter Location'
                             value={location}
                             className='input-field'
                             onChange={(e) => setLocation(e.target.value)}
@@ -122,8 +113,7 @@ export default function Signup() {
                         />
 
                         <Input
-                            label='Enter Show Room '
-                            placeholder='showroom'
+                            placeholder='Enter Show Room'
                             value={showRoom}
                             className='input-field'
                             onChange={(e) => setShowRoom(e.target.value)}
@@ -131,15 +121,14 @@ export default function Signup() {
                     </div>
 
                     <Input
-                        label='Enter Identifcation Number'
-                        placeholder='42'
+                        placeholder='Enter Identifcation Number'
                         value={identifcation}
                         className='input-field'
                         onChange={(e) => setIdentification(e.target.value)}
                     />
 
-                    <button className='login-btn' type='submit' onClick={handleSignForm}>Signup</button>
-                    <p style={{ color: 'blue' }} onClick={() => navigate('/login')}>already have an account? Login.</p>
+                    <FormButton text="Signup" onClick={() => handleSignForm} />
+                    <p className='signup-para' onClick={() => navigate('/login')}>already have an account? Login.</p>
                 </div>
 
             </div>

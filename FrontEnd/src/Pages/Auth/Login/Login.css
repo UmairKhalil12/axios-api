@@ -1,37 +1,69 @@
-.login-form{
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    margin-top: 6%;
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #333333);
 }
+
 .form-log {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;    
+    flex-direction: column;
+    color: white;
+    border: 2px solid white;
+    padding: 25px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.form-log input{
+.form-log input {
     margin: 1rem;
 }
 
-.login-btn{
+.login-btn {
     width: inherit;
     height: 30px;
     width: 260px;
     font-size: large;
 }
 
-.input-field{
+.input-field {
     height: 30px;
     width: 250px;
     font-size: large;
 }
 
+.user-icon{
+    background: gray;
+    width: 80px;
+    height: 80px;
+    border: 2px solid white;
+    border-radius: 100px;
+}
+
+.signup-para{
+    color: gray;
+    cursor: pointer;
+}
+
+.email-icon{
+    position: relative;
+    left: -40%;
+}
+
+.form-btn{
+    margin-top: 1rem;
+}
+
 @media screen and (max-width : 550px) {
-    .input-field{
+    .input-field {
         width: 180px;
     }
 
-    .login-btn{
+    .login-btn {
         width: 190px;
     }
 }

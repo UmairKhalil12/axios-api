@@ -7,6 +7,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GET_UPDATE_BY_USER } from '../../../Axios/axios';
 import Navbar from '../../../Components/Navbar/Navbar';
 import { GET_BUSINESS_BY_ID } from '../../../Axios/axios';
+import FormButton from '../../../Components/FormButton/FormButton'
+import "./InsertData.css"
 
 
 export default function InsertData() {
@@ -109,91 +111,84 @@ export default function InsertData() {
         }
     }
 
-
     return (
-        <div>
+        <>
             <Navbar />
-            <div className='signup-form'>
+            <div className='background' >
                 <h1>{id ? 'Update Data' : 'Add Data'}</h1>
-                <div className='form-log'>
-                    <div className='input-div'>
-                        <Input
-                            label='Enter Business Name'
-                            placeholder='busines'
-                            value={businessName}
-                            className='input-field'
-                            onChange={(e) => setBusinessName(e.target.value)}
-                        />
+                <div className='signup-form-2'>
+                    <form className='form-log' onSubmit={handleInsertForm}>
+                        <div className='input-div'>
+                            <Input
+                                placeholder='Busines name'
+                                value={businessName}
+                                className='input-field'
+                                onChange={(e) => setBusinessName(e.target.value)}
+                            />
 
-                        <Input
-                            label='Enter Buisness Logo Link'
-                            placeholder='img.com'
-                            value={businessLogo}
-                            className='input-field'
-                            onChange={(e) => setBusinessLogo(e.target.value)}
-                        />
-                    </div>
+                            <Input
+                                placeholder='Business Logo'
+                                value={businessLogo}
+                                className='input-field'
+                                onChange={(e) => setBusinessLogo(e.target.value)}
+                            />
+                        </div>
 
-                    <div className='input-div'>
-                        <Input
-                            label='Enter Business owner name'
-                            placeholder='john'
-                            value={businessOwnerName}
-                            className='input-field'
-                            onChange={(e) => setBusinessOwnerName(e.target.value)}
-                        />
+                        <div className='input-div'>
+                            <Input
+                                placeholder='Busienss Owner Name'
+                                value={businessOwnerName}
+                                className='input-field'
+                                onChange={(e) => setBusinessOwnerName(e.target.value)}
+                            />
 
-                        <Input
-                            label='Enter Business number'
-                            placeholder='+92'
-                            value={businessNumber}
-                            className='input-field'
-                            onChange={(e) => setBusinessNumber(e.target.value)}
-                        />
-                    </div>
+                            <Input
+                                placeholder='Business Number'
+                                value={businessNumber}
+                                className='input-field'
+                                onChange={(e) => setBusinessNumber(e.target.value)}
+                            />
+                        </div>
 
-                    <div className='input-div'>
-                        <Input
+                        <div className='input-div'>
+                            <Input
+                                placeholder='Email'
+                                className='input-field'
+                                value={email}
+                                onChange={(e) => { setEmail(e.target.value) }}
+                            />
 
-                            label='Enter Email'
-                            placeholder='abc@email.com'
-                            className='input-field'
-                            value={email}
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
+                            <Input
+                                placeholder='Phone'
+                                value={phone}
+                                className='input-field'
+                                onChange={(e) => setPhone(e.target.value)}
+                            />
+                        </div>
 
-                        <Input
-                            label='Enter Phone '
-                            placeholder='phone'
-                            value={phone}
-                            className='input-field'
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
-                    </div>
+                        <div className='input-div'>
+                            <Input
+                                placeholder='Business Website'
+                                value={website}
+                                className='input-field'
+                                onChange={(e) => setWebsite(e.target.value)}
 
-                    <div className='input-div'>
-                        <Input
-                            label='Enter website'
-                            placeholder='business.com'
-                            value={website}
-                            className='input-field'
-                            onChange={(e) => setWebsite(e.target.value)}
+                            />
 
-                        />
+                            <Input
+                                placeholder='Address'
+                                value={businessAddress}
+                                className='input-field'
+                                onChange={(e) => setBusinessAddress(e.target.value)}
+                            />
+                        </div>
 
-                        <Input
-                            label='Enter Business Address'
-                            placeholder='address'
-                            value={businessAddress}
-                            className='input-field'
-                            onChange={(e) => setBusinessAddress(e.target.value)}
-                        />
-                    </div>
+                        {/* <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button> */}
+                        <FormButton text={id ? "Update Data " : "Add Data"}  />
+                    </form>
 
-                    <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button>
                 </div>
-
             </div>
-        </div>
+        </>
     )
 }

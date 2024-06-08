@@ -17,7 +17,7 @@ const GET_METHOD = async (link, dispatch) => {
 
         return response.data;
     } catch (error) {
-        console.log('error retrieving data, logging in', error.message);
+        console.log('error logging in', error.message);
         console.log(error);
     }
 };
@@ -77,7 +77,7 @@ const GET_DATA_BY_USER = async (link) => {
         const response = await axios.get(link);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
-            console.log('get data by user', response.data);
+            // console.log('get data by user', response.data);
             return response.data;
         }
     }

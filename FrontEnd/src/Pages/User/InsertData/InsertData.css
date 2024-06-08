@@ -1,0 +1,24 @@
+.background{
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #333333);
+    margin-top: -23px;
+}
+
+.signup-form-2{
+    display: flex;
+    justify-content: center;
+}
+
+.form-log{
+    width: auto;
+}
+
+.form-btn{
+    margin: 1rem;
+}
+
+@media screen and (max-width : 550px) {
+    .background{
+        height: 100%;
+    }
+}

@@ -1,5 +1,14 @@
 .signup-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #333333);
+}
+
+.form-log{
+    padding: 5px;
 }
 
 .input-div{
