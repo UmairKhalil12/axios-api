@@ -1,9 +1,10 @@
 .business-container{
-    height: 100vh;
+    /* height: 100vh; */
     background: linear-gradient(135deg, #000000, #333333);
     color: #ddd;
     margin-top: -21px;
     text-align: center;
+    padding-bottom:1rem;
 }
 
 .cover-container{
@@ -32,4 +33,21 @@
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     border: 2px solid white;
+}
+
+.staff-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.staff-table table , td , tr, th{
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 8px;
+}
+
+.staff-table button{
+    margin-bottom: 1rem;
 }

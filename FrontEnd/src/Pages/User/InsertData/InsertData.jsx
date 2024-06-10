@@ -184,7 +184,7 @@ export default function InsertData() {
                         </div>
 
                         {/* <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button> */}
-                        <FormButton text={id ? "Update Data " : "Add Data"}  />
+                        <FormButton text={id ? "Update Data " : "Add Data"} />
                     </form>
 
                 </div>

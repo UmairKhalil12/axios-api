@@ -22,6 +22,27 @@ const GET_METHOD = async (link, dispatch) => {
     }
 };
 
+const GET_STAFF_METHOD = async (link) => {
+    try {
+        const response = await axios.get(link);
+        //console.log("get staff method",response.data);
+        return response.data
+    }
+    catch (error) {
+        console.log("error getting staff data ", error.message);
+    }
+}
+
+const INSERT_STAFF_METHOD = async (link) => {
+    try {
+        const response = await axios.get(link);
+        console.log("inserted staff data", response.data);
+    }
+    catch (error) {
+        console.log("Error inserting staff", error.message);
+    }
+}
+
 const GET_POST_METHOD = async (link) => {
     let userAuthenticated = localStorage.getItem('user');
     if (userAuthenticated === 'false') {
@@ -106,7 +127,7 @@ const GET_BUSINESS_BY_ID = async (link) => {
     try {
         const response = await axios.get(link);
         if (Array.isArray(response.data) && response.data.length > 0) {
-            console.log('get business by id', response.data);
+            //console.log('get business by id', response.data);
             return response.data;
         }
     }
@@ -131,6 +152,16 @@ const GET_DELETE_BY_ID = async (link) => {
     }
 }
 
+const DELETE_STAFF_BY_ID = async (link) => {
+    try {
+        const response = await axios.delete(link);
+        console.log('Deleted sucessfully', response.data);
+    }
+    catch (error) {
+        console.log("Error deleting staff", error.message);
+    }
+}
+
 export {
     GET_METHOD,
     GET_POST_METHOD,
@@ -139,5 +170,8 @@ export {
     GET_DATA_BY_USER,
     GET_UPDATE_BY_USER,
     GET_DELETE_BY_ID,
-    GET_BUSINESS_BY_ID
+    GET_BUSINESS_BY_ID,
+    GET_STAFF_METHOD,
+    INSERT_STAFF_METHOD,
+    DELETE_STAFF_BY_ID
 };

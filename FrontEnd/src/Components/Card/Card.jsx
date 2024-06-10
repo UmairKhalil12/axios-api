@@ -6,7 +6,7 @@ import Button from '../Button/Button';
 import { TiWorldOutline } from "react-icons/ti";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
-import { FaRegAddressCard } from "react-icons/fa";
+//import { FaRegAddressCard } from "react-icons/fa";
 
 export default function Card({ name, ownerName, website, phone, email, address, image, index }) {
 
@@ -22,27 +22,29 @@ export default function Card({ name, ownerName, website, phone, email, address, 
 
     const navigate = useNavigate();
     return (
-        <div className='main-card' onClick={()=>navigate(`/showBusiness/${index}`)}>
+        <div className='main-card' >
             <div className='card-1'>
-                <p className='heading-card'>{name}</p>
-                <img src={image} alt={name} className='card-img' />
+                <div onClick={()=>navigate(`/showBusiness/${index}`)}>
+                    <p className='heading-card'>{name}</p>
+                    <img src={image} alt={name} className='card-img' />
 
-                <p className='ownername' >{ownerName}</p>
+                    <p className='ownername' >{ownerName}</p>
 
-                <div className='card-2'>
-                    <MdOutlineEmail className='card-icon' />
-                    <p>{email}</p>
-                </div>
-                <div className='card-2'>
-                    {/* <p>{website}</p> */}
-                    <FaPhoneAlt className='card-icon' />
-                    <p>{phone}</p>
-                    {/* <p>{address}</p> */}
-                </div>
+                    <div className='card-2'>
+                        <MdOutlineEmail className='card-icon' />
+                        <p>{email}</p>
+                    </div>
+                    <div className='card-2'>
+                        {/* <p>{website}</p> */}
+                        <FaPhoneAlt className='card-icon' />
+                        <p>{phone}</p>
+                        {/* <p>{address}</p> */}
+                    </div>
 
-                <div className='card-2'>
-                    <TiWorldOutline className='card-icon' />
-                    <p>{website}</p>
+                    <div className='card-2'>
+                        <TiWorldOutline className='card-icon' />
+                        <p>{website}</p>
+                    </div>
                 </div>
 
                 <div className='card-edit-delete-button'>
