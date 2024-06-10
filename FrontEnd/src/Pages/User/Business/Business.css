@@ -1,0 +1,35 @@
+.business-container{
+    height: 100vh;
+    background: linear-gradient(135deg, #000000, #333333);
+    color: #ddd;
+    margin-top: -21px;
+    text-align: center;
+}
+
+.cover-container{
+    display: flex;
+    justify-content: center;
+}
+
+.business-cover{
+    width: 50%;
+    height: 400px;
+}
+
+.business-info{
+    display: flex;
+    justify-content: space-around;
+}
+
+.business-info p{
+    font-size: large;
+}
+
+.business-info-main{
+    width: 65%;
+    margin: 0 auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    border: 2px solid white;
+}

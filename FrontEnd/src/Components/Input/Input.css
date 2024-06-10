@@ -6,13 +6,13 @@
     background-color: transparent;
     font-size: large;
     color: white;
-    padding-left: 1.7rem;
+    padding-left: 2rem;
 }
 
 .input::placeholder{
     font-size: large;
     color: rgb(186, 178, 178);
-    padding-left: 0.5rem;
+    /* padding-left: 0.5rem; */
 }
 
 .label{
