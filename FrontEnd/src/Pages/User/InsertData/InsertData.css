@@ -17,6 +17,12 @@
     margin: 1rem;
 }
 
+.form-para-goback{
+    cursor: pointer;
+    font-size: larger;
+    text-transform: capitalize;
+}
+
 @media screen and (max-width : 550px) {
     .background{
         height: 100%;

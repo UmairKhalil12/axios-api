@@ -185,6 +185,8 @@ export default function InsertData() {
 
                         {/* <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button> */}
                         <FormButton text={id ? "Update Data " : "Add Data"} />
+                        
+                        <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>
                     </form>
 
                 </div>

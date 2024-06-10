@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import "./AddStaff.css"
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams} from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import { useSelector } from 'react-redux';
 import { emailValidation } from '../../../EmailValidation/EmaiValidation';
 import { GET_BUSINESS_BY_ID, INSERT_STAFF_METHOD, UPDATE_DATA } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
 import FormButton from '../../../Components/FormButton/FormButton';
 import Navbar from '../../../Components/Navbar/Navbar';
+
 
 
 export default function AddStaff() {
@@ -24,6 +26,28 @@ export default function AddStaff() {
     const [staffById, setStaffById] = useState('');
 
     const isEditingStaff = window.location.pathname.startsWith('/editStaff');
+    const isAddingStaff = window.location.pathname.startsWith('/addStaff');
+
+    const locationURL = useLocation();
+    //const history = useHistory();
+    const history = createBrowserHistory();
+
+    const previousPageUrl = history.action === 'POP' ? location.state?.from : null;
+    console.log(previousPageUrl);
+    const navigatingBack = () => {
+        // if (isAddingStaff) {
+        //     navigate(`/showBusiness/${BusinessId}`);
+        // }
+        // else{
+        //     window.alert("Cant go back");
+        // }
+        if (previousPageUrl) {
+            navigate(previousPageUrl);
+          } 
+          else{
+            window.alert("cant go back");
+          }
+    }
 
     const userData = useSelector(state => state.user.userData);
     const userId = () => {
@@ -39,7 +63,8 @@ export default function AddStaff() {
                     try {
                         await UPDATE_DATA(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/Registeration?Id=${id}&Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${password}&Address=${address}&Location=0&ShowRoomName=${showRoom}`)
                         window.alert("Staff updated sucessfully");
-                        navigate(`/home`);
+                        // navigate(`/home`);
+                        navigatingBack();
                     }
                     catch (error) {
                         console.log("error updating staff of id", id, error.message)
@@ -164,8 +189,8 @@ export default function AddStaff() {
 
                         />
                         <FormButton text={isEditingStaff ? "Update Staff" : "Add Staff"} />
+                        <p onClick={() => { navigatingBack() }}>Go Back</p>
                     </form>
-
                 </div>
             </div>
 

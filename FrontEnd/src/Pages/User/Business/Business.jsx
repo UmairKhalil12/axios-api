@@ -55,7 +55,7 @@ export default function Business() {
     }, [business]);
 
 
-    console.log("staff business jsx", staff);
+    //console.log("staff business jsx", staff);
 
     // console.log("business", business);
 
@@ -74,7 +74,7 @@ export default function Business() {
                                 </div>
 
                                 <div>
-                                    <br /> 
+                                    <br />
                                     <Button text="Add Staff" onClick={() => { navigate(`/addStaff/${businessId}`) }} />
                                     <h1>{value?.BusinessName}</h1>
                                     <div className='business-info'>
