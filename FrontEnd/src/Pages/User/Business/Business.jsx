@@ -6,6 +6,7 @@ import { DELETE_STAFF_BY_ID, GET_BUSINESS_BY_ID, GET_STAFF_METHOD } from '../../
 import Navbar from "../../../Components/Navbar/Navbar"
 import Loader from '../../../Components/Loader/Loader';
 import Button from '../../../Components/Button/Button';
+import SideNav from '../../../Components/SideNav/SideNav';
 
 export default function Business() {
     const id = useParams();
@@ -61,7 +62,7 @@ export default function Business() {
 
     return (
         <>
-            <Navbar />
+            <SideNav />
             {loading ? <Loader /> : (
                 <div className='business-container'>
                     <h1>Business Data</h1>

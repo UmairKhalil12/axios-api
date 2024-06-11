@@ -1,35 +1,19 @@
+/* Home.css */
+
 .main-home {
-  text-align: center;
-  background: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
   background-size: cover;
-  margin-top: -23px;
-
-}
-
-.home-heading{
-  color: #ddd;
-}
-
-.card-div {
+  background-repeat: no-repeat;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.card-div-2 {
-  margin: 1rem;
-  width: 25%;
-}
-
-@media screen and (max-width : 768px) {
-  .card-div{
-    display: flex;
-    justify-content: center;
-  }
-  .card-div-2 {
-    margin-bottom: 0; 
-    width: 70%;
-  }
+.home-heading {
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+  margin-bottom: 20px;
 }

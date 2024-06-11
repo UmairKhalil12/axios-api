@@ -25,19 +25,6 @@ export default function Navbar() {
         setToggleMenu(!toggleMenu);
     };
 
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         setToggleMenu(window.innerWidth <= 800);
-    //     };
-
-    //     handleResize();
-    //     window.addEventListener('resize', handleResize);
-
-    //     return () => {
-    //         window.removeEventListener('resize', handleResize);
-    //     };
-    // }, []);
-
     return (
         <div className={`navbar ${toggleMenu ? 'navbar-open' : ''}`}>
             <div className={`navbar-main ${toggleMenu ? 'navbar-main-open' : ''}`}>

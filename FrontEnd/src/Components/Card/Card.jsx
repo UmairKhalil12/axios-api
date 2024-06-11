@@ -24,7 +24,7 @@ export default function Card({ name, ownerName, website, phone, email, address, 
     return (
         <div className='main-card' >
             <div className='card-1'>
-                <div onClick={()=>navigate(`/showBusiness/${index}`)}>
+                <div onClick={() => navigate(`/showBusiness/${index}`)}>
                     <p className='heading-card'>{name}</p>
                     <img src={image} alt={name} className='card-img' />
 

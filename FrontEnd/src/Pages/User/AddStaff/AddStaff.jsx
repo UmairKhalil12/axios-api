@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import "./AddStaff.css"
-import { useLocation, useNavigate, useParams} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { useNavigate, useParams} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { emailValidation } from '../../../EmailValidation/EmaiValidation';
 import { GET_BUSINESS_BY_ID, INSERT_STAFF_METHOD, UPDATE_DATA } from '../../../Axios/axios';
 import Input from '../../../Components/Input/Input';
 import FormButton from '../../../Components/FormButton/FormButton';
-import Navbar from '../../../Components/Navbar/Navbar';
+// import Navbar from '../../../Components/Navbar/Navbar';
+import SideNav from '../../../Components/SideNav/SideNav';
 
 
 
@@ -28,32 +28,16 @@ export default function AddStaff() {
     const isEditingStaff = window.location.pathname.startsWith('/editStaff');
     const isAddingStaff = window.location.pathname.startsWith('/addStaff');
 
-    const locationURL = useLocation();
-    //const history = useHistory();
-    const history = createBrowserHistory();
-
-    const previousPageUrl = history.action === 'POP' ? location.state?.from : null;
-    console.log(previousPageUrl);
-    const navigatingBack = () => {
-        // if (isAddingStaff) {
-        //     navigate(`/showBusiness/${BusinessId}`);
-        // }
-        // else{
-        //     window.alert("Cant go back");
-        // }
-        if (previousPageUrl) {
-            navigate(previousPageUrl);
-          } 
-          else{
-            window.alert("cant go back");
-          }
-    }
-
+    
     const userData = useSelector(state => state.user.userData);
     const userId = () => {
         return userData[0].UserID
     }
     const UserID = userId();
+
+    const navigatingBack = () =>{
+        navigate(-1);
+    }
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -128,7 +112,7 @@ export default function AddStaff() {
     return (
 
         <div>
-            <Navbar />
+            <SideNav />
             <div className='background' >
                 <h1>Add Staff</h1>
                 <div className='signup-form-2'>
@@ -189,7 +173,7 @@ export default function AddStaff() {
 
                         />
                         <FormButton text={isEditingStaff ? "Update Staff" : "Add Staff"} />
-                        <p onClick={() => { navigatingBack() }}>Go Back</p>
+                        <p  className='form-para-goback' onClick={() => { navigatingBack() }}>Go Back</p>
                     </form>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import Navbar from '../../../Components/Navbar/Navbar';
 import { GET_BUSINESS_BY_ID } from '../../../Axios/axios';
 import FormButton from '../../../Components/FormButton/FormButton'
 import "./InsertData.css"
+import SideNav from '../../../Components/SideNav/SideNav';
 
 
 export default function InsertData() {
@@ -113,7 +114,7 @@ export default function InsertData() {
 
     return (
         <>
-            <Navbar />
+            <SideNav />
             <div className='background' >
                 <h1>{id ? 'Update Data' : 'Add Data'}</h1>
                 <div className='signup-form-2'>
@@ -185,7 +186,7 @@ export default function InsertData() {
 
                         {/* <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button> */}
                         <FormButton text={id ? "Update Data " : "Add Data"} />
-                        
+
                         <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>
                     </form>
 
