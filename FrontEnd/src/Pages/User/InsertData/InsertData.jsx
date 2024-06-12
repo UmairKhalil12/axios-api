@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Input from '../../../Components/Input/Input';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GET_UPDATE_BY_USER } from '../../../Axios/axios';
-import Navbar from '../../../Components/Navbar/Navbar';
 import { GET_BUSINESS_BY_ID } from '../../../Axios/axios';
 import FormButton from '../../../Components/FormButton/FormButton'
 import "./InsertData.css"
@@ -183,8 +182,6 @@ export default function InsertData() {
                                 onChange={(e) => setBusinessAddress(e.target.value)}
                             />
                         </div>
-
-                        {/* <button className='login-btn' type='submit' onClick={handleInsertForm}>{id ? 'Update Data' : 'Add Data'}</button> */}
                         <FormButton text={id ? "Update Data " : "Add Data"} />
 
                         <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>

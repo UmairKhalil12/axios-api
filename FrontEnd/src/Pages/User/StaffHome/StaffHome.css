@@ -1,0 +1,49 @@
+.staff-home {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column; /* Ensures items are stacked vertically */
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */
+    background: linear-gradient(135deg, #000000, #333333);
+    color: white;
+    box-sizing: border-box;
+    padding: 20px; /* Optional: Add padding if needed */
+    text-align: center; /* Ensures text within the div is centered */
+}
+
+.table-div {
+    width: 100%;
+    max-width: 80%; /* Adjust as needed */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.item-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.item-table th, .item-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+
+.item-table th {
+    background-color: #555;
+}
+
+.item-table td {
+    background-color: #666;
+}
+
+td button{
+    margin-bottom: 0.5rem;
+}

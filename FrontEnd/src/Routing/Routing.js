@@ -8,6 +8,9 @@ import InsertData from "../Pages/User/InsertData/InsertData";
 import { Navigate } from "react-router-dom";
 import Business from "../Pages/User/Business/Business";
 import AddStaff from "../Pages/User/AddStaff/AddStaff";
+import AddItems from "../Pages/User/AddItems/AddItems";
+import AddInvoice from "../Pages/User/AddInvoice/AddInvoice";
+import ShowInvoice from "../Pages/User/ShowInvoice/ShowInvoice";
 
 export default function Routing() {
     const origUser = useSelector(state => state.user);
@@ -43,6 +46,12 @@ export default function Routing() {
                         <Route path='/showBusiness/:id' element={<Business />} />
                         <Route path='/addStaff/:id' element={<AddStaff />} />
                         <Route path = '/editStaff/:id' element = {<AddStaff />} /> 
+                        <Route path = '/addItems' element = {<AddItems />} /> 
+                        <Route path = '/editItems/:id' element = {<AddItems />} />
+                        <Route path = '/showInvoice' element = {<ShowInvoice />} />
+                        <Route path ="/addInvoice" element = {<AddInvoice />} /> 
+                        <Route path ="/editInvoice/:id" element = {<AddInvoice />} /> 
+
                     </>
                 ) : (
                     <>

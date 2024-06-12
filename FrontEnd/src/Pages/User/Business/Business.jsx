@@ -3,7 +3,7 @@ import "./Business.css"
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DELETE_STAFF_BY_ID, GET_BUSINESS_BY_ID, GET_STAFF_METHOD } from '../../../Axios/axios';
-import Navbar from "../../../Components/Navbar/Navbar"
+//import Navbar from "../../../Components/Navbar/Navbar"
 import Loader from '../../../Components/Loader/Loader';
 import Button from '../../../Components/Button/Button';
 import SideNav from '../../../Components/SideNav/SideNav';

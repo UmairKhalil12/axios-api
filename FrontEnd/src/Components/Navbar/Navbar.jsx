@@ -14,6 +14,8 @@ export default function Navbar() {
     const [toggleMenu, setToggleMenu] = useState(false);
     const user = useSelector(state => state.user.user);
     const userData = useSelector(state => state.user.userData);
+    const userType = userData[0].UserType;
+    
     const dispatch = useDispatch();
 
     const handleSignout = () => {
@@ -25,6 +27,16 @@ export default function Navbar() {
         setToggleMenu(!toggleMenu);
     };
 
+    const NavigateAddData = () => {
+        console.log("navigateAddData Navbar userType" , userType);
+        if (userType === 0) {
+            navigate("/addData");
+        }
+        else if (userType === 2) {
+            navigate("/addItems")
+        }
+    }
+
     return (
         <div className={`navbar ${toggleMenu ? 'navbar-open' : ''}`}>
             <div className={`navbar-main ${toggleMenu ? 'navbar-main-open' : ''}`}>
@@ -35,7 +47,7 @@ export default function Navbar() {
                     <div className="navbar-main-links">
                         <div>
                             {user && <p onClick={() => navigate('/home')}>Home</p>}
-                            {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
+                            {user && <p onClick={() => NavigateAddData}>Add Data</p>}
                         </div>
                         {user && (
                             <div className="navbar-profile" onClick={() => navigate('/home')}>
@@ -55,7 +67,7 @@ export default function Navbar() {
                     <div className='navbar-links'>
                         <div className="navbar-main-links-open">
                             {user && <p onClick={() => navigate('/home')}>Home</p>}
-                            {user && <p onClick={() => navigate('/adddata')}>Add Data</p>}
+                            {user && <p onClick={() => NavigateAddData}>Add Data</p>}
                         </div>
                         <div>
                             {user && (
