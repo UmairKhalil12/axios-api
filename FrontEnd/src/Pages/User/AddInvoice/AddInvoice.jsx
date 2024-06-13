@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Input from '../../../Components/Input/Input';
 import FormButton from '../../../Components/FormButton/FormButton';
@@ -19,9 +19,9 @@ export default function AddInvoice() {
 
     const navigate = useNavigate();
 
-    const getInvoiceById = async () => {
+    const getInvoiceById = useCallback( async () => {
         try {
-            await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMGeneralSetup/PaymentDetailGetById?Id=${id}`)
+            await GET_BUSINESS_BY_ID(`IMGeneralSetup/PaymentDetailGetById?Id=${id}`)
                 .then((res) => {
                     setBankInfo(res[0].BankInfo);
                     setDescription(res[0].OtherDescription);
@@ -31,14 +31,14 @@ export default function AddInvoice() {
         } catch (error) {
             console.log("error getting invoice by id", id, error.message)
         }
-    }
+    } ,[id])
 
     const handleForm = async (e) => {
         e.preventDefault();
         if (description !== '' && bankInfo !== '' && qr !== '') {
             if (!id) {
                 try {
-                    await INSERT_STAFF_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMGeneralSetup/PaymentDetailsOn?BankInfo=${bankInfo}&OtherDescription=${description}&QRImage=${qr}&BusinessId=${''}&CreateBy=${userId}`)
+                    await INSERT_STAFF_METHOD(`IMGeneralSetup/PaymentDetailsOn?BankInfo=${bankInfo}&OtherDescription=${description}&QRImage=${qr}&BusinessId=${''}&CreateBy=${userId}`)
                         .then(() => {
                             window.alert("Invoice data inserted sucessfully");
                             navigate('/showInvoice');
@@ -49,7 +49,7 @@ export default function AddInvoice() {
             }
             else if (id) {
                 try {
-                    await UPDATE_DATA(`https://ilivesolutions.azurewebsites.net/api/IMGeneralSetup/PaymentDetailsOn?Id=${id}&BankInfo=${bankInfo}&OtherDescription=${description}&QRImage=${qr}&ModifyBy=${userId}`)
+                    await UPDATE_DATA(`IMGeneralSetup/PaymentDetailsOn?Id=${id}&BankInfo=${bankInfo}&OtherDescription=${description}&QRImage=${qr}&ModifyBy=${userId}`)
                         .then(() => {
                             window.alert("Invoice data updated sucessfully");
                             navigate("/showInvoice");
@@ -65,7 +65,7 @@ export default function AddInvoice() {
 
     useEffect(() => {
         getInvoiceById();
-    }, [id])
+    }, [id , getInvoiceById])
 
     return (
         <>

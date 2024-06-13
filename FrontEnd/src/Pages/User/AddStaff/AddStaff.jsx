@@ -26,7 +26,7 @@ export default function AddStaff() {
     const [staffById, setStaffById] = useState('');
 
     const isEditingStaff = window.location.pathname.startsWith('/editStaff');
-    const isAddingStaff = window.location.pathname.startsWith('/addStaff');
+    //const isAddingStaff = window.location.pathname.startsWith('/addStaff');
 
     
     const userData = useSelector(state => state.user.userData);
@@ -45,7 +45,7 @@ export default function AddStaff() {
             if (isEditingStaff) {
                 if (emailValidation(email)) {
                     try {
-                        await UPDATE_DATA(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/Registeration?Id=${id}&Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${password}&Address=${address}&Location=0&ShowRoomName=${showRoom}`)
+                        await UPDATE_DATA(`IMUserRegistration/Registeration?Id=${id}&Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${password}&Address=${address}&Location=0&ShowRoomName=${showRoom}`)
                         window.alert("Staff updated sucessfully");
                         // navigate(`/home`);
                         navigatingBack();
@@ -61,7 +61,7 @@ export default function AddStaff() {
             if (!isEditingStaff) {
                 if (emailValidation(email)) {
                     try {
-                        await INSERT_STAFF_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/Registeration?Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${password}&Address=${address}&Location=0&ShowRoomName=${showRoom}&IdentificationNo=0&ParentUserID=${BusinessId}&UserType=2&CreateBy=${UserID}`)
+                        await INSERT_STAFF_METHOD(`IMUserRegistration/Registeration?Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${password}&Address=${address}&Location=0&ShowRoomName=${showRoom}&IdentificationNo=0&ParentUserID=${BusinessId}&UserType=2&CreateBy=${UserID}`)
                             .then(() => {
                                 window.alert("Staff added sucessfully");
                                 navigate(`/showBusiness/${BusinessId}`);
@@ -84,7 +84,7 @@ export default function AddStaff() {
 
     const fetch_staff = useCallback(async () => {
         try {
-            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/GetById?Id=${id}`)
+            const res = await GET_BUSINESS_BY_ID(`IMUserRegistration/GetById?Id=${id}`)
                 .then((res) => {
                     setName(res[0].Name);
                     setEmail(res[0].Email);
@@ -107,7 +107,7 @@ export default function AddStaff() {
         if (isEditingStaff) {
             fetch_staff()
         }
-    }, [fetch_staff, isEditingStaff])
+    }, [fetch_staff, isEditingStaff ])
 
     return (
 

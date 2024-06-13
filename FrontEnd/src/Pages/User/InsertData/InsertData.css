@@ -1,6 +1,6 @@
 .background{
     height: 100vh;
-    background: linear-gradient(135deg, #000000, #333333);
+    background:var(--background-gradient);
     margin-top: -23px;
 }
 

@@ -6,9 +6,16 @@ import { IoMdAdd } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { PiSignOutBold } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
-import { userInfo, userLogout } from '../../store/userSlice';
+import { colorInfo, userInfo, userLogout } from '../../store/userSlice';
 import { FaFileInvoiceDollar } from "react-icons/fa6";
 import { IoBagAdd } from "react-icons/io5";
+import { TbZoomMoneyFilled } from "react-icons/tb";
+import { MdAssignmentAdd } from "react-icons/md";
+import { FaClipboardList } from "react-icons/fa";
+import { MdAddTask } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -17,6 +24,13 @@ const Sidebar = () => {
 
     const userData = useSelector(state => state.user.userData);
     const userType = userData.length > 0 ? userData[0].UserType : null;
+
+    const color = useSelector(state => state.user.color);
+    console.log(color);
+
+    const changeColorMode = () => {
+        dispatch(colorInfo(!color));
+    }
 
     const handleSignout = () => {
         dispatch(userLogout(false));
@@ -40,38 +54,77 @@ const Sidebar = () => {
             </div>
 
             <ul className="nav-links">
+
                 <li onClick={() => navigate('/home')}>
-                    {open ? <span> <IoHomeSharp size={20} /> Home</span> : <IoHomeSharp size={20} />}
+                    {open ? <p> <IoHomeSharp size={20} /> Home</p> : <IoHomeSharp size={20} />}
                 </li>
                 <li onClick={handleAddDataClick}>
                     {open ? (
-                        <span> <IoMdAdd size={20} /> {userType === 0 ? 'Add Business' : 'Add Items'}</span>
+                        <p> <IoMdAdd size={20} /> {userType === 0 ? 'Add Business' : 'Add Items'}</p>
                     ) : (
                         <IoMdAdd size={20} />
                     )}
                 </li>
                 <li onClick={() => navigate('/home')}>
-                    {open ? <span> <FaUser size={20} /> {userData[0].Name}</span> : <FaUser size={20} />}
+                    {open ? <p> <FaUser size={20} /> {userData[0].Name}</p> : <FaUser size={20} />}
                 </li>
 
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/showInvoice')}>
-                        {open ? <span> <FaFileInvoiceDollar size={20} /> Show Invoice </span> : <FaFileInvoiceDollar size={20} />}
+                        {open ? <p> <FaFileInvoiceDollar size={20} /> Show Invoice </p> : <FaFileInvoiceDollar size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/addInvoice')}>
-                        {open ? <span> <IoBagAdd size={20} /> Add Invoice </span> : <IoBagAdd size={20} />}
+                        {open ? <p> <MdAssignmentAdd size={20} /> Add Invoice </p> : <MdAssignmentAdd size={20} />}
                     </li>
                     : ''
                 }
 
+                {userType === 2 ?
+                    <li onClick={() => navigate('/showTax')}>
+                        {open ? <p> <TbZoomMoneyFilled size={20} /> Show Taxes </p> : <TbZoomMoneyFilled size={20} />}
+                    </li>
+                    : ''
+                }
+
+                {userType === 2 ?
+                    <li onClick={() => navigate('/addTax')}>
+                        {open ? <p> <IoBagAdd size={20} /> Add Taxes </p> : <IoBagAdd size={20} />}
+                    </li>
+                    : ''
+                }
+
+                {userType === 2 ?
+                    <li onClick={() => navigate('/showTerms')}>
+                        {open ? <p> <FaClipboardList size={20} /> Show Terms </p> : <FaClipboardList size={20} />}
+                    </li>
+                    : ''
+                }
+                {userType === 2 ?
+                    <li onClick={() => navigate('/addTerms')}>
+                        {open ? <p> <MdAddTask size={20} /> Add Terms </p> : <MdAddTask size={20} />}
+                    </li>
+                    : ''
+                }
+
+
                 <li onClick={handleSignout}>
-                    {open ? <span> <PiSignOutBold size={25} /> Sign Out</span> : <PiSignOutBold size={25} />}
+                    {open ? <p> <PiSignOutBold size={25} /> Sign Out</p> : <PiSignOutBold size={25} />}
                 </li>
+
+                {color ?
+                    <li onClick={changeColorMode}>
+                        {open ? <p> <MdDarkMode size={20} /> Enable Light Mode </p> : <MdDarkMode size={20} />}
+                    </li>
+                    :
+                    <li onClick={changeColorMode}>
+                        {open ? <p> <MdOutlineDarkMode size={20} /> Enable Dark Mode </p> : <MdOutlineDarkMode size={20} />}
+                    </li>
+                }
 
             </ul>
         </div>

@@ -1,4 +1,45 @@
-.App{
+:root {
+  --background-gradient: linear-gradient(135deg, #000000, #333333);
+  --text-color: #ddd;
+  --dark-table-color: #555;
+  --light-table-color: #666;
+  --border-color: #fff;
+  --form-background: rgba(255, 255, 255, 0.2);
+  --secondary-text: gray;
+  --background-color: #262626;
+  --secondary-background-color: #1a1a1a;
+  --secondary-border-color: whitesmoke;
+
+}
+
+
+body.dark-mode {
+  --background-gradient: linear-gradient(135deg, #000000, #333333);
+  --text-color: #ddd;
+  --dark-table-color: #555;
+  --light-table-color: #666;
+  --border-color: #fff;
+  --form-background: rgba(255, 255, 255, 0.2);
+  --secondary-text: gray;
+  --background-color: #262626;
+  --secondary-background-color: #1a1a1a;
+  --secondary-border-color: whitesmoke;
+}
+
+body.light-mode {
+  --background-gradient: linear-gradient(135deg, #ffffff, #cccccc);
+  --text-color: #333;
+  --dark-table-color: #ddd;
+  --light-table-color: #eee;
+  --border-color: #000;
+  --form-background: rgba(100, 100, 100, 0.35);
+  --secondary-text: darkgray;
+  --background-color: #f9f9f9;
+  --secondary-background-color: #eaeaea;
+  --secondary-border-color: #333;
+}
+
+.App {
   margin: 0;
   padding: 0;
 }

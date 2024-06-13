@@ -2,9 +2,11 @@ import axios from 'axios';
 import { userLogin } from '../store/userSlice';
 import { userInfo } from '../store/userSlice';
 
+const parentLink = "https://ilivesolutions.azurewebsites.net/api/"
+
 const GET_METHOD = async (link, dispatch) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
 
         console.log('get method', response.data);
         if (Array.isArray(response.data) && response.data.length > 0) {
@@ -24,7 +26,7 @@ const GET_METHOD = async (link, dispatch) => {
 
 const GET_STAFF_METHOD = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
         //console.log("get staff method",response.data);
         return response.data
     }
@@ -35,7 +37,7 @@ const GET_STAFF_METHOD = async (link) => {
 
 const INSERT_STAFF_METHOD = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
         console.log("inserted staff data", response.data);
     }
     catch (error) {
@@ -47,7 +49,7 @@ const GET_POST_METHOD = async (link) => {
     let userAuthenticated = localStorage.getItem('user');
     if (userAuthenticated === 'false') {
         try {
-            const response = await axios.get(link);
+            const response = await axios.get(parentLink + link);
             console.log(response.data);
             return response.data;
         } catch (error) {
@@ -60,7 +62,7 @@ const GET_POST_METHOD = async (link) => {
 
 const INSERT_DATA = async (link, dispatch) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
         console.log(response.data);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
@@ -82,7 +84,7 @@ const INSERT_DATA = async (link, dispatch) => {
 
 const UPDATE_DATA = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
         console.log(response.data);
         return response.data;
 
@@ -95,7 +97,8 @@ const UPDATE_DATA = async (link) => {
 
 const GET_DATA_BY_USER = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
+        console.log("get staff", parentLink + link);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
             // console.log('get data by user', response.data);
@@ -110,7 +113,7 @@ const GET_DATA_BY_USER = async (link) => {
 
 const GET_UPDATE_BY_USER = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
             console.log('get updated data by user', response.data);
@@ -125,7 +128,7 @@ const GET_UPDATE_BY_USER = async (link) => {
 
 const GET_BUSINESS_BY_ID = async (link) => {
     try {
-        const response = await axios.get(link);
+        const response = await axios.get(parentLink + link);
         if (Array.isArray(response.data) && response.data.length > 0) {
             //console.log('get business by id', response.data);
             return response.data;
@@ -139,7 +142,7 @@ const GET_BUSINESS_BY_ID = async (link) => {
 
 const GET_DELETE_BY_ID = async (link) => {
     try {
-        const response = await axios.delete(link);
+        const response = await axios.delete(parentLink + link);
 
         if (Array.isArray(response.data) && response.data.length > 0) {
             console.log('get updated data by user', response.data);
@@ -154,7 +157,7 @@ const GET_DELETE_BY_ID = async (link) => {
 
 const DELETE_STAFF_BY_ID = async (link) => {
     try {
-        const response = await axios.delete(link);
+        const response = await axios.delete(parentLink + link);
         console.log('Deleted sucessfully', response.data);
     }
     catch (error) {

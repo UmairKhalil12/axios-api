@@ -11,6 +11,10 @@ import AddStaff from "../Pages/User/AddStaff/AddStaff";
 import AddItems from "../Pages/User/AddItems/AddItems";
 import AddInvoice from "../Pages/User/AddInvoice/AddInvoice";
 import ShowInvoice from "../Pages/User/ShowInvoice/ShowInvoice";
+import AddTax from "../Pages/User/AddTax/AddTax";
+import ShowTax from "../Pages/User/ShowTax/ShowTax";
+import ShowTerms from "../Pages/User/ShowTerms/ShowTerms";
+import AddTerms from "../Pages/User/AddTerms/AddTerms";
 
 export default function Routing() {
     const origUser = useSelector(state => state.user);
@@ -51,7 +55,13 @@ export default function Routing() {
                         <Route path = '/showInvoice' element = {<ShowInvoice />} />
                         <Route path ="/addInvoice" element = {<AddInvoice />} /> 
                         <Route path ="/editInvoice/:id" element = {<AddInvoice />} /> 
-
+                        <Route path = '/showTax' element= {<ShowTax />} />
+                        <Route path = "/addTax" element = {<AddTax />} /> 
+                        <Route path = "/editTax/:id" element = {<AddTax />} />
+                        <Route path = '/showTerms' element= {<ShowTerms />} />
+                        <Route path = "/addTerms" element = {<AddTerms />} /> 
+                        <Route path = "/editTerms/:id" element = {<AddTerms />} />
+                
                     </>
                 ) : (
                     <>

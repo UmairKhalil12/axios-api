@@ -27,7 +27,7 @@ export default function AddItems() {
         if (itemName !== '' && itemPrice !== '' && itemType !== '' && itemDetails !== '' && discount !== '') {
             if (!id) {
                 try {
-                    await INSERT_DATA(`https://ilivesolutions.azurewebsites.net/api/IMItemSetup/ItemSetupOn?ItemName=${itemName}&UnitPrice=${itemPrice}&UnitType=${itemType}&Tax=${tax}&Discount=${discount}&DiscountType=${true}&ItemDetails=${itemDetails}&CreateBy=${userId}`)
+                    await INSERT_DATA(`IMItemSetup/ItemSetupOn?ItemName=${itemName}&UnitPrice=${itemPrice}&UnitType=${itemType}&Tax=${tax}&Discount=${discount}&DiscountType=${true}&ItemDetails=${itemDetails}&CreateBy=${userId}`)
                         .then(() => {
                             window.alert('Item inserted sucessfully');
                             navigate('/home');
@@ -40,7 +40,7 @@ export default function AddItems() {
 
             if (id) {
                 try {
-                    await UPDATE_DATA(`https://ilivesolutions.azurewebsites.net/api/IMItemSetup/ItemSetupOn?Id=${id}&ItemName=${itemName}&UnitPrice=${itemPrice}&UnitType=${itemType}&Tax=${tax}&Discount=${discount}&DiscountType=${true}&ItemDetails=${itemDetails}&CreateBy=${userId}`)
+                    await UPDATE_DATA(`IMItemSetup/ItemSetupOn?Id=${id}&ItemName=${itemName}&UnitPrice=${itemPrice}&UnitType=${itemType}&Tax=${tax}&Discount=${discount}&DiscountType=${true}&ItemDetails=${itemDetails}&CreateBy=${userId}`)
                     .then(()=>{
                         window.alert("updated data sucessfully");
                         navigate('/home');
@@ -59,9 +59,9 @@ export default function AddItems() {
 
     const getItemById = useCallback(async () => {
         try {
-            await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMItemSetup/ItemSetupGetById?Id=${id}`)
+            await GET_BUSINESS_BY_ID(`IMItemSetup/ItemSetupGetById?Id=${id}`)
                 .then((res) => {
-                    console.log('res get item by id', res);
+                    //console.log('res get item by id', res);
                     setItemName(res[0].ItemName);
                     setItemPrice(res[0].UnitPrice);
                     setItemDetails(res[0].ItemsDetails);

@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     user: false,
     userData: [],
-    businessData: []
+    businessData: [],
+    color : true ,
 }
 
 export const userSlice = createSlice({
@@ -26,9 +27,13 @@ export const userSlice = createSlice({
 
         businessInfo: (state, action) => {
             state.businessData = action.payload;
+        },
+
+        colorInfo : (state , action) =>{
+            state.color = action.payload; 
         }
     }
 })
 
-export const { userLogin, userLogout, userInfo, businessInfo } = userSlice.actions;
+export const { userLogin, userLogout, userInfo, businessInfo , colorInfo} = userSlice.actions;
 export default userSlice.reducer

@@ -8,8 +8,8 @@
     flex-direction: column; /* Ensures items are stacked vertically */
     justify-content: center; /* Centers items vertically */
     align-items: center; /* Centers items horizontally */
-    background: linear-gradient(135deg, #000000, #333333);
-    color: white;
+    background:var(--background-gradient);
+    color: var(--text-color);
     box-sizing: border-box;
     padding: 20px; /* Optional: Add padding if needed */
     text-align: center; /* Ensures text within the div is centered */
@@ -30,18 +30,18 @@
 
 .item-table th, .item-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     text-align: left;
     word-wrap: break-word;
     box-sizing: border-box;
 }
 
 .item-table th {
-    background-color: #555;
+    background-color: var(--dark-table-color);
 }
 
 .item-table td {
-    background-color: #666;
+    background-color: var(--light-table-color);
 }
 
 td button{

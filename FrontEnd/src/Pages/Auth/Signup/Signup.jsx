@@ -30,7 +30,7 @@ export default function Signup() {
                 if (pass === confirmPass) {
                     try {
                         await GET_POST_METHOD(
-                            `https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/Registeration?Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${pass}&Address=${address}&Location=${location}&ShowRoomName=${showRoom}&IdentificationNo=${identifcation}&ParentUserID=${'1'}&UserType=${'0'}`);
+                            `IMUserRegistration/Registeration?Name=${name}&Email=${email}&PhoneNo=${phone}&Password=${pass}&Address=${address}&Location=${location}&ShowRoomName=${showRoom}&IdentificationNo=${identifcation}&ParentUserID=${'1'}&UserType=${'0'}`);
                     } catch (error) {
                         console.error('Error creating user:', error);
                         window.alert('Error creating user');

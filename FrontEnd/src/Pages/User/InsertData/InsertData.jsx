@@ -35,7 +35,7 @@ export default function InsertData() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessGetById?Id=${id}`)
+            const res = await GET_BUSINESS_BY_ID(`IMBusiness/BusinessGetById?Id=${id}`)
                 .then((res) => {
                     setBusinessName(res[0].BusinessName);
                     setBusinessLogo(res[0].BusinessLogo);
@@ -64,7 +64,7 @@ export default function InsertData() {
                 && email !== '' && phone !== '' && website !== '' && businessAddress !== '') {
                 if (emailValidation(email)) {
                     try {
-                        await INSERT_DATA(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessOn?BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&CreateBy=${UserID}`, dispatch)
+                        await INSERT_DATA(`IMBusiness/BusinessOn?BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&CreateBy=${UserID}`, dispatch)
                             .then(() => {
                                 window.alert('Data Inserted Successfully');
                                 navigate('/home')
@@ -89,7 +89,7 @@ export default function InsertData() {
                 && email !== '' && phone !== '' && website !== '' && businessAddress !== '') {
                 if (emailValidation(email)) {
                     try {
-                        await GET_UPDATE_BY_USER(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessOn?Id=${id}&BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&ModifyBy=${UserID}`)
+                        await GET_UPDATE_BY_USER(`IMBusiness/BusinessOn?Id=${id}&BusinessName=${businessName}&BusinessLogo=${businessLogo}&BusinessOwnerName=${businessOwnerName}&BusinessNumber=${businessNumber}&Email=${email}&PhoneNumber=${phone}&WebSite=${website}&BusinessAddress=${businessAddress}&ModifyBy=${UserID}`)
                             .then(() => {
                                 window.alert('data update sucessfully');
                                 navigate('/home');

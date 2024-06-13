@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Accordion from '../../../Components/Accordian/Accordian';
 import Button from '../../../Components/Button/Button';
 import { GET_DATA_BY_USER, GET_DELETE_BY_ID } from '../../../Axios/axios';
-import bg from '../../../images/bg.jpg'
+//import bg from '../../../images/bg.jpg'
 import Loader from '../../../Components/Loader/Loader';
 import { useSelector } from 'react-redux';
 
@@ -20,7 +20,7 @@ export default function BusinessHome() {
 
     const handleDelete = useCallback(async (index) => {
         try {
-            await GET_DELETE_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/DeleteBusiness?Id=${index}`);
+            await GET_DELETE_BY_ID(`IMBusiness/DeleteBusiness?Id=${index}`);
             window.alert("Deleted sucessfully");
         }
         catch (error) {
@@ -33,7 +33,7 @@ export default function BusinessHome() {
         const fetchData = async () => {
             try {
                 if (userID) {
-                    const data = await GET_DATA_BY_USER(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/GetById?CreateBy=${userID}`);
+                    const data = await GET_DATA_BY_USER(`IMBusiness/GetById?CreateBy=${userID}`);
                     setBusinessData(data);
                     setLoading(false);
                 }
@@ -49,7 +49,7 @@ export default function BusinessHome() {
     return (
         <>
             {loading ? <Loader /> : (
-                <div className='main-home' style={{ backgroundImage: `url(${bg})` }}>
+                <div className='main-home'>
                     <div>
                         <h1 className='home-heading' >Businesses</h1>
                         <div className='accordion-container'>

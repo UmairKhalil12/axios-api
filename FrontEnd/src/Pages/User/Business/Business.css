@@ -1,7 +1,7 @@
 .business-container{
     /* height: 100vh; */
-    background: linear-gradient(135deg, #000000, #333333);
-    color: #ddd;
+    background: var(--background-gradient);
+    color: var(--text-color);
     margin-top: -21px;
     text-align: center;
     padding-bottom:1rem;
@@ -30,9 +30,9 @@
     width: 65%;
     margin: 0 auto;
     padding: 25px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--form-background);
     border-radius: 15px;
-    border: 2px solid white;
+    border: 2px solid var(--border-color);
 }
 
 .staff-table{
@@ -43,7 +43,7 @@
 }
 
 .staff-table table , td , tr, th{
-    border: 1px solid white;
+    border: 1px solid var(--border-color);
     border-collapse: collapse;
     padding: 8px;
 }

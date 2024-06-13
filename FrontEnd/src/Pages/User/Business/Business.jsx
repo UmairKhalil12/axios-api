@@ -21,8 +21,8 @@ export default function Business() {
 
     const fetchData = useCallback(async () => {
         try {
-            const res = await GET_BUSINESS_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMBusiness/BusinessGetById?Id=${ID}`);
-            const res2 = await GET_STAFF_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/GetAllStaffs?UserID=${ID}`);
+            const res = await GET_BUSINESS_BY_ID(`IMBusiness/BusinessGetById?Id=${ID}`);
+            const res2 = await GET_STAFF_METHOD(`IMUserRegistration/GetAllStaffs?UserID=${ID}`);
             setBusiness(res);
             if (res2) {
                 setStaff(res2);
@@ -37,7 +37,7 @@ export default function Business() {
 
     const removeStaff = useCallback(async (id) => {
         try {
-            await DELETE_STAFF_BY_ID(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/DeleteUser?Id=${id}`);
+            await DELETE_STAFF_BY_ID(`IMUserRegistration/DeleteUser?Id=${id}`);
             window.alert("Staff Deleted Sucessfully");
         }
         catch (error) {

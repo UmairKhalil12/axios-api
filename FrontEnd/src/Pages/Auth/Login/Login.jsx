@@ -19,7 +19,7 @@ export default function Login() {
         e.preventDefault();
         if (email !== '' && pass !== '') {
             if (emailValidation(email)) {
-                await GET_METHOD(`https://ilivesolutions.azurewebsites.net/api/IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
+                await GET_METHOD(`IMUserRegistration/AdminLogin?Email=${email}&Password=${pass}`, dispatch)
                     .then(() => {
                         navigate('/home');
                     })
