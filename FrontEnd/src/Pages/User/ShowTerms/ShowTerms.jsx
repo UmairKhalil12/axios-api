@@ -6,6 +6,7 @@ import SideNav from '../../../Components/SideNav/SideNav';
 import Button from '../../../Components/Button/Button';
 import Loader from '../../../Components/Loader/Loader';
 import "./ShowTerms.css"
+import { useTranslation } from 'react-i18next';
 
 
 export default function ShowTerms() {
@@ -16,7 +17,7 @@ export default function ShowTerms() {
 
     const navigate = useNavigate();
 
-    const[loading , setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
 
     const getAllTerms = async () => {
@@ -51,41 +52,43 @@ export default function ShowTerms() {
 
     console.log(terms);
 
+    const {t} = useTranslation('terms'); 
+
     return (
         <>
-        <SideNav />
-        {loading ? <Loader/ > : (
-            <div className='div-terms'>
-            <div>
-                <h1>Show Terms</h1>
-                <Button text="Add Terms" onClick={() => navigate('/addTerms')} />
-                <br />
-                <div>
-                    <table className="table-terms">
-                        <thead>
-                            <tr>
-                                <th>Terms Condtions</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {terms?.map((value) => (
-                                <tr key={value?.Id}>
-                                    <td>{value?.TermsCondition}</td>
-                                    <td>
-                                        <Button text='Update' onClick={() => navigate(`/editTerms/${value?.Id}`)} />
-                                        <Button text="Remove" onClick={() => handleDelete(value?.Id)} />
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+            <SideNav />
+            {loading ? <Loader /> : (
+                <div className='div-terms'>
+                    <div>
+                        <h1>{t("Show terms")}</h1>
+                        <Button text="Add Terms" onClick={() => navigate('/addTerms')} />
+                        <br />
+                        <div>
+                            <table className="table-terms">
+                                <thead>
+                                    <tr>
+                                        <th>{t("Terms Conditions")}</th>
+                                        <th>{t("Action")}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {terms?.map((value) => (
+                                        <tr key={value?.Id}>
+                                            <td>{value?.TermsCondition}</td>
+                                            <td>
+                                                <Button text={t("Update")} onClick={() => navigate(`/editTerms/${value?.Id}`)} />
+                                                <Button text={t("Remove")} onClick={() => handleDelete(value?.Id)} />
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        )}
-            
-            
+            )}
+
+
         </>
     )
 }

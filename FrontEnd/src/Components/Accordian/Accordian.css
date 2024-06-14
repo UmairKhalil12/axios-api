@@ -41,3 +41,7 @@
 .accordion-actions button {
   margin-left: 10px;
 }
+
+.accordion-container{
+  background-color: var(--background-gradient);
+}

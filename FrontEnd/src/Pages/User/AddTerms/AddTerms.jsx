@@ -6,6 +6,7 @@ import { GET_BUSINESS_BY_ID, INSERT_DATA, UPDATE_DATA } from '../../../Axios/axi
 import FormButton from '../../../Components/FormButton/FormButton';
 import SideNav from '../../../Components/SideNav/SideNav';
 import Input from '../../../Components/Input/Input';
+import { useTranslation } from 'react-i18next';
 
 export default function AddTerms() {
     const [termsConditions, setTermsConditions] = useState('');
@@ -16,6 +17,8 @@ export default function AddTerms() {
     const { id } = useParams();
 
     const navigate = useNavigate();
+
+    const { t } = useTranslation('terms')
 
     const handleForm = async (e) => {
         e.preventDefault();
@@ -75,19 +78,18 @@ export default function AddTerms() {
         <>
             <SideNav />
             <div className='background' >
-                <h1>Add Items</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
 
                         <Input
-                            placeholder='Terms and Conditions'
+                            placeholder={t('Terms and Conditions')}
                             value={termsConditions}
                             className='input-field'
                             onChange={(e) => setTermsConditions(e.target.value)}
                         />
 
-                        <FormButton text={id ? 'Update Terms and Conditions' : 'Add Terms and Conditions'} />
-                        <p className='form-para-goback' onClick={() => navigate('/showTerms')}>Go Back</p>
+                        <FormButton text={id ? t('Update Terms and Conditions') : t('Add Terms and Conditions')} />
+                        <p className='form-para-goback' onClick={() => navigate('/showTerms')}>{t('Go Back')}</p>
                     </form>
                 </div>
             </div>

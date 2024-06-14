@@ -1,0 +1,17 @@
+{
+    "Email": "Email",
+    "Password": "Password",
+    "Login": "Login",
+    "No account? Signup": "No account? Signup",
+    "Name" : "Name",
+    "Enter Email" : "Enter Email",
+    "Enter Phone Number" : "Enter Phone Number",
+    "Enter Password" : "Enter Password",
+    "Confirm Password" : "Confirm Password",
+    "Enter Address" : "Enter Address",
+    "Enter Location" : "Enter Location",
+    "Enter Show Room" : "Enter Show Room",
+    "Enter Identification Number" : "Enter Identification Number",
+    "Signup" : "Signup",
+    "already have an account? Login" : "already have an account? Login"
+}

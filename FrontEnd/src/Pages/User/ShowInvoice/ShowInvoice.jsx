@@ -7,6 +7,7 @@ import SideNav from "../../../Components/SideNav/SideNav";
 import Button from "../../../Components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
+import { useTranslation } from "react-i18next";
 
 
 export default function ShowInvoice() {
@@ -48,6 +49,8 @@ export default function ShowInvoice() {
     }, [])
 
     console.log("show invoice", invoice);
+    
+    const {t} = useTranslation('invoice'); 
 
     return (
         <>
@@ -55,16 +58,16 @@ export default function ShowInvoice() {
             {loading ? <Loader /> : (
                 <div className="show-invoice-main" >
                     <div>
-                        <h1>Invoice Data</h1>
-                        <Button text="Add Invoice" onClick={() => navigate('/addInvoice')} />
+                        <h1>{t("Invoice Data")}</h1>
+                        <Button text={t("Add Invoice")} onClick={() => navigate('/addInvoice')} />
                         <br />
                         <div>
                             <table className="table-invoice">
                                 <thead>
-                                    <th>Bank Info</th>
-                                    <th>Description</th>
-                                    <th>Qr</th>
-                                    <th>Actions</th>
+                                    <th>{t("Bank Info")}</th>
+                                    <th>{t("Description")}</th>
+                                    <th>{t("Qr")}</th>
+                                    <th>{t("Actions")}</th>
                                 </thead>
                                 {invoice?.map((value, index) => {
                                     return (
@@ -74,8 +77,8 @@ export default function ShowInvoice() {
                                                 <td>{value?.OtherDescription}</td>
                                                 <td>{value?.QRImage}</td>
                                                 <td>
-                                                    <Button text='Update' onClick={() => navigate(`/editInvoice/${value?.Id}`)} />
-                                                    <Button text="Remove" onClick={() => handleDelete(value?.Id)} />
+                                                    <Button text={t("Update")} onClick={() => navigate(`/editInvoice/${value?.Id}`)} />
+                                                    <Button text={t("Remove")} onClick={() => handleDelete(value?.Id)} />
                                                 </td>
                                             </tr>
                                         </tbody>

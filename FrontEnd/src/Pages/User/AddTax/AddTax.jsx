@@ -6,6 +6,7 @@ import SideNav from '../../../Components/SideNav/SideNav';
 import { useSelector } from 'react-redux';
 import Input from '../../../Components/Input/Input';
 import FormButton from '../../../Components/FormButton/FormButton';
+import { useTranslation } from 'react-i18next';
 
 
 export default function AddTax() {
@@ -71,30 +72,30 @@ export default function AddTax() {
 
     }, [id, getFetchBYId])
 
+    const {t} = useTranslation('tax');
+
     return (
         <>
             <SideNav />
             <div className='background' >
-                <h1>Add Items</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
-
                         <Input
-                            placeholder='Tax Name'
+                            placeholder={t('Tax Name')}
                             value={taxName}
                             className='input-field'
                             onChange={(e) => setTaxName(e.target.value)}
                         />
 
                         <Input
-                            placeholder='TaxRate'
+                            placeholder={t('Tax Rate')}
                             value={taxRate}
                             className='input-field'
                             onChange={(e) => setTaxRate(e.target.value)}
                         />
 
-                        <FormButton text={id ? "Update Tax" : "Add Tax"} />
-                        <p className='form-para-goback' onClick={() => navigate('/showTax')}>Go Back</p>
+                        <FormButton text={id ? t("Update Tax") : t("Add Tax")} />
+                        <p className='form-para-goback' onClick={() => navigate('/showTax')}>{t('Go Back')}</p>
 
                     </form >
                 </div>

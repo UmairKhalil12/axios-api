@@ -6,6 +6,7 @@ import Button from '../../../Components/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../../../Components/Loader/Loader'
+import { useTranslation } from 'react-i18next';
 
 export default function ShowTax() {
     const [tax, setTax] = useState([]);
@@ -46,22 +47,24 @@ export default function ShowTax() {
 
     console.log('show tax', tax);
 
+    const {t} = useTranslation('tax');
+
     return (
         <>
             <SideNav />
             {loading ? <Loader /> : (
                 <div className='tax-home'>
                     <div>
-                        <h1>Show Tax</h1>
-                        <Button text="Add Tax" onClick={() => navigate('/addTax')} />
+                        <h1>{t("Show Tax")}</h1>
+                        <Button text={t("Add Tax")} onClick={() => navigate('/addTax')} />
                         <br />
                         <div>
                             <table className="table-tax">
                                 <thead>
                                     <tr>
-                                        <th>Tax Name</th>
-                                        <th>Tax Rate</th>
-                                        <th>Actions</th>
+                                        <th>{t("Tax Name")}</th>
+                                        <th>{t("Tax Rate")}</th>
+                                        <th>{t("Actions")}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,8 +73,8 @@ export default function ShowTax() {
                                             <td>{value?.TaxName}</td>
                                             <td>{value?.TaxRate}</td>
                                             <td>
-                                                <Button text='Update' onClick={() => navigate(`/editTax/${value?.Id}`)} />
-                                                <Button text="Remove" onClick={() => handleDelete(value?.Id)} />
+                                                <Button text={t("Update")} onClick={() => navigate(`/editTax/${value?.Id}`)} />
+                                                <Button text={t("Remove")} onClick={() => handleDelete(value?.Id)} />
                                             </td>
                                         </tr>
                                     ))}

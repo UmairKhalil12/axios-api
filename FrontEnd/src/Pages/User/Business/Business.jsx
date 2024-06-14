@@ -7,6 +7,7 @@ import { DELETE_STAFF_BY_ID, GET_BUSINESS_BY_ID, GET_STAFF_METHOD } from '../../
 import Loader from '../../../Components/Loader/Loader';
 import Button from '../../../Components/Button/Button';
 import SideNav from '../../../Components/SideNav/SideNav';
+import { useTranslation } from 'react-i18next';
 
 export default function Business() {
     const id = useParams();
@@ -60,12 +61,14 @@ export default function Business() {
 
     // console.log("business", business);
 
+    const { t } = useTranslation('business');
+
     return (
         <>
             <SideNav />
             {loading ? <Loader /> : (
                 <div className='business-container'>
-                    <h1>Business Data</h1>
+                    <h1>{t("Business Data")}</h1>
                     {business?.map((value, index) => {
                         return (
                             <div className='business-info-main'>
@@ -76,13 +79,13 @@ export default function Business() {
 
                                 <div>
                                     <br />
-                                    <Button text="Add Staff" onClick={() => { navigate(`/addStaff/${businessId}`) }} />
+                                    <Button text={t("Add Staff")} onClick={() => { navigate(`/addStaff/${businessId}`) }} />
                                     <h1>{value?.BusinessName}</h1>
                                     <div className='business-info'>
-                                        <p><span><b>Owner's Name : </b></span>{value?.BusinessOwnerName}</p>
-                                        <p><span><b>Website : </b></span>{value?.WebSite}</p>
-                                        <p><span><b>Business Number : </b></span>{value?.BusinessNumber}</p>
-                                        <p><span><b>Email : </b></span>{value?.Email}</p>
+                                        <p><span><b>{t("Owner's Name") } : </b></span>{value?.BusinessOwnerName}</p>
+                                        <p><span><b>{t('Website') }: </b></span>{value?.WebSite}</p>
+                                        <p><span><b>{t('Business Number') } : </b></span>{value?.BusinessNumber}</p>
+                                        <p><span><b>{t('Email') } : </b></span>{value?.Email}</p>
                                     </div>
                                     {staff.length > 0 ? <h3>Staffs</h3> : ""}
                                     {staff.length > 0 ? (
@@ -90,11 +93,11 @@ export default function Business() {
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>Number</th>
-                                                        <th>Address</th>
-                                                        <th>Actions</th>
+                                                        <th>{t('Name')}</th>
+                                                        <th>{t('Email')}</th>
+                                                        <th>{t('Number')}</th>
+                                                        <th>{t('Address')}</th>
+                                                        <th>{t('Actions')}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -107,8 +110,8 @@ export default function Business() {
                                                                 <td>{value?.Address}</td>
                                                                 <td>
                                                                     <div>
-                                                                        <Button text="Edit" onClick={() => navigate(`/editStaff/${value?.Id}`)} />
-                                                                        <Button text="Remove" onClick={() => removeStaff(value?.Id)} />
+                                                                        <Button text={t('Edit')} onClick={() => navigate(`/editStaff/${value?.Id}`)} />
+                                                                        <Button text={t('Remove')} onClick={() => removeStaff(value?.Id)} />
                                                                     </div>
                                                                 </td>
                                                             </tr>

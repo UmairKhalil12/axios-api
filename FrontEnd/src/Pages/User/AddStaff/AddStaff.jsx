@@ -8,6 +8,7 @@ import Input from '../../../Components/Input/Input';
 import FormButton from '../../../Components/FormButton/FormButton';
 // import Navbar from '../../../Components/Navbar/Navbar';
 import SideNav from '../../../Components/SideNav/SideNav';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -109,6 +110,8 @@ export default function AddStaff() {
         }
     }, [fetch_staff, isEditingStaff ])
 
+    const {t} = useTranslation('staff'); 
+
     return (
 
         <div>
@@ -119,14 +122,14 @@ export default function AddStaff() {
                     <form className='form-log' onSubmit={handleForm}>
                         <div className='input-div'>
                             <Input
-                                placeholder='Name'
+                                placeholder={t('Name')}
                                 value={name}
                                 className='input-field'
                                 onChange={(e) => setName(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Email'
+                                placeholder={t('Email')}
                                 value={email}
                                 className='input-field'
                                 onChange={(e) => setEmail(e.target.value)}
@@ -135,14 +138,14 @@ export default function AddStaff() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Phone'
+                                placeholder={t('Phone')}
                                 value={phone}
                                 className='input-field'
                                 onChange={(e) => setPhone(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Password'
+                                placeholder={t('Password')}
                                 value={password}
                                 className='input-field'
                                 onChange={(e) => setPassword(e.target.value)}
@@ -151,14 +154,14 @@ export default function AddStaff() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Address'
+                                placeholder={t('Address')}
                                 className='input-field'
                                 value={address}
                                 onChange={(e) => { setAddress(e.target.value) }}
                             />
 
                             <Input
-                                placeholder='Location'
+                                placeholder={t('Location')}
                                 value={location}
                                 className='input-field'
                                 onChange={(e) => setLocation(e.target.value)}
@@ -166,18 +169,17 @@ export default function AddStaff() {
                         </div>
 
                         <Input
-                            placeholder='Show Room'
+                            placeholder={t('Show Room')}
                             value={showRoom}
                             className='input-field'
                             onChange={(e) => setShowRoom(e.target.value)}
 
                         />
-                        <FormButton text={isEditingStaff ? "Update Staff" : "Add Staff"} />
-                        <p  className='form-para-goback' onClick={() => { navigatingBack() }}>Go Back</p>
+                        <FormButton text={isEditingStaff ? t("Update Staff") : t("Add Staff")} />
+                        <p  className='form-para-goback' onClick={() => { navigatingBack() }}>{t('Go Back')}</p>
                     </form>
                 </div>
             </div>
-
         </div>
     )
 }

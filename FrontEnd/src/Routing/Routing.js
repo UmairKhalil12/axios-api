@@ -16,6 +16,8 @@ import ShowTax from "../Pages/User/ShowTax/ShowTax";
 import ShowTerms from "../Pages/User/ShowTerms/ShowTerms";
 import AddTerms from "../Pages/User/AddTerms/AddTerms";
 
+import { Suspense } from "react";
+
 export default function Routing() {
     const origUser = useSelector(state => state.user);
 
@@ -39,39 +41,41 @@ export default function Routing() {
 
 
     return (
-        <BrowserRouter>
-            <Routes>
-                {origUser.user ? (
-                    <>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/home' element={<Home />} />
-                        <Route path='/adddata' element={<InsertData />} />
-                        <Route path='/updatedata/:id' element={<InsertData />} />
-                        <Route path='/showBusiness/:id' element={<Business />} />
-                        <Route path='/addStaff/:id' element={<AddStaff />} />
-                        <Route path = '/editStaff/:id' element = {<AddStaff />} /> 
-                        <Route path = '/addItems' element = {<AddItems />} /> 
-                        <Route path = '/editItems/:id' element = {<AddItems />} />
-                        <Route path = '/showInvoice' element = {<ShowInvoice />} />
-                        <Route path ="/addInvoice" element = {<AddInvoice />} /> 
-                        <Route path ="/editInvoice/:id" element = {<AddInvoice />} /> 
-                        <Route path = '/showTax' element= {<ShowTax />} />
-                        <Route path = "/addTax" element = {<AddTax />} /> 
-                        <Route path = "/editTax/:id" element = {<AddTax />} />
-                        <Route path = '/showTerms' element= {<ShowTerms />} />
-                        <Route path = "/addTerms" element = {<AddTerms />} /> 
-                        <Route path = "/editTerms/:id" element = {<AddTerms />} />
-                
-                    </>
-                ) : (
-                    <>
-                        <Route path='/' element={<Login />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/signup' element={<Signup />} />
-                        <Route path='*' element={<Navigate to="/" />} />
-                    </>
-                )}
-            </Routes>
-        </BrowserRouter>
+        <Suspense fallback = {"Loading.."} >
+            <BrowserRouter>
+                <Routes>
+                    {origUser.user ? (
+                        <>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/home' element={<Home />} />
+                            <Route path='/adddata' element={<InsertData />} />
+                            <Route path='/updatedata/:id' element={<InsertData />} />
+                            <Route path='/showBusiness/:id' element={<Business />} />
+                            <Route path='/addStaff/:id' element={<AddStaff />} />
+                            <Route path='/editStaff/:id' element={<AddStaff />} />
+                            <Route path='/addItems' element={<AddItems />} />
+                            <Route path='/editItems/:id' element={<AddItems />} />
+                            <Route path='/showInvoice' element={<ShowInvoice />} />
+                            <Route path="/addInvoice" element={<AddInvoice />} />
+                            <Route path="/editInvoice/:id" element={<AddInvoice />} />
+                            <Route path='/showTax' element={<ShowTax />} />
+                            <Route path="/addTax" element={<AddTax />} />
+                            <Route path="/editTax/:id" element={<AddTax />} />
+                            <Route path='/showTerms' element={<ShowTerms />} />
+                            <Route path="/addTerms" element={<AddTerms />} />
+                            <Route path="/editTerms/:id" element={<AddTerms />} />
+
+                        </>
+                    ) : (
+                        <>
+                            <Route path='/' element={<Login />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/signup' element={<Signup />} />
+                            <Route path='*' element={<Navigate to="/" />} />
+                        </>
+                    )}
+                </Routes>
+            </BrowserRouter>
+        </Suspense>
     );
 }

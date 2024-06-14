@@ -15,6 +15,7 @@ import { FaClipboardList } from "react-icons/fa";
 import { MdAddTask } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
+import LanguageSelector from '../Language/LanguageSelector';
 
 
 const Sidebar = () => {
@@ -125,6 +126,10 @@ const Sidebar = () => {
                         {open ? <p> <MdOutlineDarkMode size={20} /> Enable Dark Mode </p> : <MdOutlineDarkMode size={20} />}
                     </li>
                 }
+
+                <li >
+                    {open ? <p> <LanguageSelector />  Sign Out</p> :<LanguageSelector />  }
+                </li>
 
             </ul>
         </div>

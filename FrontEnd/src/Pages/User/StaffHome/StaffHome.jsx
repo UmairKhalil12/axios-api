@@ -5,6 +5,7 @@ import Button from '../../../Components/Button/Button';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../Components/Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 export default function StaffHome() {
 
@@ -58,28 +59,29 @@ export default function StaffHome() {
         return finalPrice;
     }
 
+    const { t } = useTranslation('staff');
 
     return (
         <>
             {loading ? <Loader /> : (
                 <div className='staff-home'>
                     <div className='staff-home-2'>
-                        <h1>Staff Home</h1>
-                        <p>Welcome to the staff home page!</p>
+                        <h1>{t('Staff Home')}</h1>
+                        <p>{t("Welcome to the staff home page!")}</p>
                         {items?.length > 0 ? <h3>Items</h3> : ''}
                         {items?.length > 0 ? (
                             <div className='table-div'>
                                 <table className='item-table'>
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Type</th>
-                                            <th>Price</th>
-                                            <th>Discount</th>
-                                            <th>Tax</th>
-                                            <th>Final Price</th>
-                                            <th>Details</th>
-                                            <th>Actions</th>
+                                            <th>{t('Name')}</th>
+                                            <th>{t('type')}</th>
+                                            <th>{t('Price')}</th>
+                                            <th>{t('Discount')}</th>
+                                            <th>{t('Tax')}</th>
+                                            <th>{t('Final Price')}</th>
+                                            <th>{t('Details')}</th>
+                                            <th>{t('Actions')}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,8 +97,8 @@ export default function StaffHome() {
                                                     <td>{finalPrice(value?.UnitPrice, value?.Tax, value?.Discount)}</td>
                                                     <td>{value?.ItemsDetails} </td>
                                                     <td>
-                                                        <Button text="Update" onClick={() => navigate(`/editItems/${value?.Id}`)} />
-                                                        <Button text="Remove" onClick={() => handleDelete(value?.Id)} />
+                                                        <Button text={t('Update')} onClick={() => navigate(`/editItems/${value?.Id}`)} />
+                                                        <Button text={t('Remove')} onClick={() => handleDelete(value?.Id)} />
                                                     </td>
                                                 </tr>
                                             )

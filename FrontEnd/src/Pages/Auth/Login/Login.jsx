@@ -9,11 +9,15 @@ import { emailValidation } from '../../../EmailValidation/EmaiValidation';
 import FormButton from '../../../Components/FormButton/FormButton';
 import user_img from '../../../images/user-icon.png'
 
+import { useTranslation } from 'react-i18next';
+
 export default function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const { t} = useTranslation('form');
 
     const handleLoginForm = async (e) => {
         e.preventDefault();
@@ -42,7 +46,7 @@ export default function Login() {
                         <img src={user_img} alt='user icon png' className='user-icon' />
                     </div>
                     <Input
-                        placeholder='Email'
+                        placeholder={t('Email')}
                         className='input-field'
                         value={email}
                         type="email"
@@ -50,15 +54,15 @@ export default function Login() {
                     />
 
                     <Input
-                        placeholder='Password'
+                        placeholder={t('Password')}
                         className='input-field'
                         value={pass}
                         type="password"
                         onChange={(e) => { setPass(e.target.value) }}
                     />
 
-                    <FormButton text="Login" />
-                    <p className="signup-para" onClick={() => navigate('/signup')}>No account? Signup.</p>
+                    <FormButton text={t('Login')} />
+                    <p className="signup-para" onClick={() => navigate('/signup')}>{t('No account? Signup')}</p>
 
                 </form>
             </div>

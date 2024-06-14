@@ -1,0 +1,16 @@
+{
+    "Items" : "Items",
+    "Name" : "Name",
+    "Type" : "Type",
+    "Price" : "Price",
+    "Discount" : "Discount",
+    "Tax" : "Tax",
+    "Final Price" : "Final Price",
+    "Details" : "Details",
+    "Actions" : "Actions" ,
+    "Item Name" : "Item Name",
+    "Item Price" : "Item Price",
+    "Item Type" : "Item Type",
+    "Item Details" : "Item Details",
+    "Add Item" : "Add Item" 
+}

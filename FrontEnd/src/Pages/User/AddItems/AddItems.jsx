@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import SideNav from '../../../Components/SideNav/SideNav';
 import { GET_BUSINESS_BY_ID, INSERT_DATA, UPDATE_DATA } from '../../../Axios/axios';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export default function AddItems() {
     const [itemName, setItemName] = useState('');
@@ -13,6 +14,8 @@ export default function AddItems() {
     const [tax, setTax] = useState('');
     const [discount, setDiscount] = useState('');
     const [itemDetails, setItemDetails] = useState('');
+
+    const{t} = useTranslation(); 
 
     const userData = useSelector(state => state.user.userData);
     console.log(userData);
@@ -85,19 +88,19 @@ export default function AddItems() {
         <>
             <SideNav />
             <div className='background' >
-                <h1>Add Items</h1>
+                <h1 style={{textAlign : 'center'}}>{t("Add Items")}</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
                         <div className='input-div'>
                             <Input
-                                placeholder='Item Name'
+                                placeholder={t('Item Name')}
                                 value={itemName}
                                 className='input-field'
                                 onChange={(e) => setItemName(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Item Price'
+                                placeholder={t('Item Price')}
                                 value={itemPrice}
                                 className='input-field'
                                 onChange={(e) => setItemPrice(e.target.value)}
@@ -106,14 +109,14 @@ export default function AddItems() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Item Type'
+                                placeholder={t('Item Type')}
                                 value={itemType}
                                 className='input-field'
                                 onChange={(e) => setItemType(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Tax'
+                                placeholder={t('Tax')}
                                 value={tax}
                                 className='input-field'
                                 onChange={(e) => setTax(e.target.value)}
@@ -122,21 +125,21 @@ export default function AddItems() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Discount'
+                                placeholder={t('Discount')}
                                 className='input-field'
                                 value={discount}
                                 onChange={(e) => { setDiscount(e.target.value) }}
                             />
 
                             <Input
-                                placeholder='Item Details'
+                                placeholder={t('Item Details')}
                                 value={itemDetails}
                                 className='input-field'
                                 onChange={(e) => setItemDetails(e.target.value)}
                             />
                         </div>
-                        <FormButton text={id ? "Update Item" : "Add Item"} />
-                        <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>
+                        <FormButton text={id ? t("Update Item") : t("Add Item")} />
+                        <p className='form-para-goback' onClick={() => navigate('/home')} >{t('Go Back')}</p>
                     </form>
                 </div>
             </div>

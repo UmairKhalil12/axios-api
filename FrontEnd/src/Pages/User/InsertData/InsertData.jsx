@@ -9,6 +9,7 @@ import { GET_BUSINESS_BY_ID } from '../../../Axios/axios';
 import FormButton from '../../../Components/FormButton/FormButton'
 import "./InsertData.css"
 import SideNav from '../../../Components/SideNav/SideNav';
+import { useTranslation } from 'react-i18next';
 
 
 export default function InsertData() {
@@ -111,23 +112,25 @@ export default function InsertData() {
         }
     }
 
+    const{t} = useTranslation('business'); 
+
     return (
         <>
             <SideNav />
             <div className='background' >
-                <h1>{id ? 'Update Data' : 'Add Data'}</h1>
+                <h1>{id ? t('Update Data') : t('Add Data')}</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleInsertForm}>
                         <div className='input-div'>
                             <Input
-                                placeholder='Busines name'
+                                placeholder={t("Business Name")}
                                 value={businessName}
                                 className='input-field'
                                 onChange={(e) => setBusinessName(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Business Logo'
+                                placeholder={t("Business Logo")}
                                 value={businessLogo}
                                 className='input-field'
                                 onChange={(e) => setBusinessLogo(e.target.value)}
@@ -136,14 +139,14 @@ export default function InsertData() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Busienss Owner Name'
+                                placeholder={t("Business Owner Name")}
                                 value={businessOwnerName}
                                 className='input-field'
                                 onChange={(e) => setBusinessOwnerName(e.target.value)}
                             />
 
                             <Input
-                                placeholder='Business Number'
+                                placeholder={t("Business Number")}
                                 value={businessNumber}
                                 className='input-field'
                                 onChange={(e) => setBusinessNumber(e.target.value)}
@@ -152,14 +155,14 @@ export default function InsertData() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Email'
+                                placeholder={t("Email")}
                                 className='input-field'
                                 value={email}
                                 onChange={(e) => { setEmail(e.target.value) }}
                             />
 
                             <Input
-                                placeholder='Phone'
+                                placeholder={t("Phone")}
                                 value={phone}
                                 className='input-field'
                                 onChange={(e) => setPhone(e.target.value)}
@@ -168,7 +171,7 @@ export default function InsertData() {
 
                         <div className='input-div'>
                             <Input
-                                placeholder='Business Website'
+                                placeholder={t("Business Website")}
                                 value={website}
                                 className='input-field'
                                 onChange={(e) => setWebsite(e.target.value)}
@@ -176,13 +179,13 @@ export default function InsertData() {
                             />
 
                             <Input
-                                placeholder='Address'
+                                placeholder={t("Address")}
                                 value={businessAddress}
                                 className='input-field'
                                 onChange={(e) => setBusinessAddress(e.target.value)}
                             />
                         </div>
-                        <FormButton text={id ? "Update Data " : "Add Data"} />
+                        <FormButton text={id ? t("Update Data ") : t("Add Data")} />
 
                         <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>
                     </form>

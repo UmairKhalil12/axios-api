@@ -8,6 +8,7 @@ import { GET_DATA_BY_USER, GET_DELETE_BY_ID } from '../../../Axios/axios';
 //import bg from '../../../images/bg.jpg'
 import Loader from '../../../Components/Loader/Loader';
 import { useSelector } from 'react-redux';
+import { useTranslation } from "react-i18next";
 
 export default function BusinessHome() {
     const [businessData, setBusinessData] = useState([]);
@@ -45,26 +46,28 @@ export default function BusinessHome() {
         fetchData();
     }, [userID, handleDelete]);
 
+    const { t } = useTranslation('business');
+
 
     return (
         <>
             {loading ? <Loader /> : (
                 <div className='main-home'>
                     <div>
-                        <h1 className='home-heading' >Businesses</h1>
+                        <h1 className='home-heading' >{t("Businesses")}</h1>
                         <div className='accordion-container'>
                             {businessData?.map((business, index) => (
                                 <Accordion key={index} title={business.BusinessName}>
                                     <div className='accordion-content' >
                                         <div onClick={() => navigate(`/showBusiness/${business?.Id}`)}>
-                                            <p><FiUser /> <strong>Owner Name:</strong> {business.BusinessOwnerName}</p>
-                                            <p><FiLink /> <strong>Website:</strong> {business.WebSite}</p>
-                                            <p><FiMail /> <strong>Email:</strong> {business.Email}</p>
-                                            <p><FiPhone /> <strong>Phone:</strong> {business.BusinessNumber}</p>
+                                            <p><FiUser /> <strong>{t("Owner Name")}:</strong> {business.BusinessOwnerName}</p>
+                                            <p><FiLink /> <strong>{t("Website")}:</strong> {business.WebSite}</p>
+                                            <p><FiMail /> <strong>{t("Email")}:</strong> {business.Email}</p>
+                                            <p><FiPhone /> <strong>{t("Phone")}:</strong> {business.BusinessNumber}</p>
                                         </div>
                                         <div className='accordion-actions'>
-                                            <Button onClick={() => navigate(`/updatedata/${business?.Id}`)} text='Edit' />
-                                            <Button onClick={() => handleDelete(business?.Id)} text='Delete' />
+                                            <Button onClick={() => navigate(`/updatedata/${business?.Id}`)} text={t("Edit")} />
+                                            <Button onClick={() => handleDelete(business?.Id)} text={t("Delete")} />
                                         </div>
                                     </div>
                                 </Accordion>

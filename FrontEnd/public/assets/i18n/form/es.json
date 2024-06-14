@@ -1,0 +1,17 @@
+{
+    "Email": "Correo Electrónico",
+    "Password": "Contraseña",
+    "Login": "Iniciar Sesión",
+    "No account? Signup": "¿No tienes cuenta? Regístrate",
+    "Name": "Nombre",
+    "Enter Email": "Introduce el Correo Electrónico",
+    "Enter Phone Number": "Introduce el Número de Teléfono",
+    "Enter Password": "Introduce la Contraseña",
+    "Confirm Password": "Confirma la Contraseña",
+    "Enter Address": "Introduce la Dirección",
+    "Enter Location": "Introduce la Ubicación",
+    "Enter Show Room": "Introduce la Sala de Exhibición",
+    "Enter Identification Number": "Introduce el Número de Identificación",
+    "Signup": "Regístrate",
+    "already have an account? Login": "¿Ya tienes una cuenta? Inicia Sesión"
+}
