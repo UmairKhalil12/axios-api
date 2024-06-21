@@ -12,5 +12,9 @@
     "Item Price": "Precio del Artículo",
     "Item Type": "Tipo de Artículo",
     "Item Details": "Detalles del Artículo",
-    "Add Item": "Agregar Artículo"
+    "Add Item": "Agregar Artículo",
+    "Add Items" : "Agregar Artículos",
+    "Go Back": "Volver",
+    "Update": "Actualizar",
+    "Remove": "Eliminar"
 }

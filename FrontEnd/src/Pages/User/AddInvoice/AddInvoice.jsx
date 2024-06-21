@@ -1,3 +1,4 @@
+import "./AddInvoice.css"
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import Input from '../../../Components/Input/Input';
@@ -19,9 +20,7 @@ export default function AddInvoice() {
     const { id } = useParams();
 
     const navigate = useNavigate();
-
-    const {t} = useTranslation(); 
-
+    
     const getInvoiceById = useCallback( async () => {
         try {
             await GET_BUSINESS_BY_ID(`IMGeneralSetup/PaymentDetailGetById?Id=${id}`)
@@ -70,11 +69,14 @@ export default function AddInvoice() {
         getInvoiceById();
     }, [id , getInvoiceById])
 
+    const {t} = useTranslation('invoice'); 
+
+
     return (
         <>
             <SideNav />
             <div className='background' >
-                <h1>{t("Add Items")}</h1>
+                <h1 className="heading-items">Add Invoice</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
 

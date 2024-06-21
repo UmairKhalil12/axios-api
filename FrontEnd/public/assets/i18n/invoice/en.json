@@ -4,5 +4,8 @@
     "Bank Info" : "Bank Info",
     "Description" : "Description",
     "Qr" : "Qr",
-    "Update Invoice" : "Update Invoice"
+    "Update Invoice" : "Update Invoice",
+    "Update" : "Update",
+    "Remove" : "Remove",
+    "Go Back" : "Go Back"
 }

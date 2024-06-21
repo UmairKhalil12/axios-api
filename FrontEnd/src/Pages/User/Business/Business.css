@@ -1,10 +1,15 @@
 .business-container{
-    /* height: 100vh; */
+    min-height: 100vh;
+    height: 100%;
     background: var(--background-gradient);
     color: var(--text-color);
-    margin-top: -21px;
+    margin-top: -23px;
     text-align: center;
     padding-bottom:1rem;
+}
+
+.heading-business{
+    padding-top: 1rem;
 }
 
 .cover-container{

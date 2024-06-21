@@ -16,6 +16,7 @@ import { MdAddTask } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import LanguageSelector from '../Language/LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 
 const Sidebar = () => {
@@ -46,22 +47,24 @@ const Sidebar = () => {
         }
     };
 
+    const { t } = useTranslation('sidenav');
+
     return (
         <div className={`sidebar ${open ? 'open' : ''}`}>
             <div className='top-menu'>
                 <div className="menu-icon-container" onClick={() => setOpen(!open)}>
-                    {open ? <span>&#8592; Back</span> : <span>☰ </span>}
+                    {open ? <span>&#8592; {t("Back")}</span> : <span>☰ </span>}
                 </div>
             </div>
 
             <ul className="nav-links">
 
                 <li onClick={() => navigate('/home')}>
-                    {open ? <p> <IoHomeSharp size={20} /> Home</p> : <IoHomeSharp size={20} />}
+                    {open ? <p> <IoHomeSharp size={20} /> {t("Home")} </p> : <IoHomeSharp size={20} />}
                 </li>
                 <li onClick={handleAddDataClick}>
                     {open ? (
-                        <p> <IoMdAdd size={20} /> {userType === 0 ? 'Add Business' : 'Add Items'}</p>
+                        <p> <IoMdAdd size={20} /> {userType === 0 ? t('Add Business') : t('Add Items')}</p>
                     ) : (
                         <IoMdAdd size={20} />
                     )}
@@ -73,62 +76,62 @@ const Sidebar = () => {
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/showInvoice')}>
-                        {open ? <p> <FaFileInvoiceDollar size={20} /> Show Invoice </p> : <FaFileInvoiceDollar size={20} />}
+                        {open ? <p> <FaFileInvoiceDollar size={20} /> {t("Show Invoice")} </p> : <FaFileInvoiceDollar size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/addInvoice')}>
-                        {open ? <p> <MdAssignmentAdd size={20} /> Add Invoice </p> : <MdAssignmentAdd size={20} />}
+                        {open ? <p> <MdAssignmentAdd size={20} /> {t("Add Invoice")} </p> : <MdAssignmentAdd size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/showTax')}>
-                        {open ? <p> <TbZoomMoneyFilled size={20} /> Show Taxes </p> : <TbZoomMoneyFilled size={20} />}
+                        {open ? <p> <TbZoomMoneyFilled size={20} /> {t("Show Taxes")} </p> : <TbZoomMoneyFilled size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/addTax')}>
-                        {open ? <p> <IoBagAdd size={20} /> Add Taxes </p> : <IoBagAdd size={20} />}
+                        {open ? <p> <IoBagAdd size={20} /> {t("Add Taxes")} </p> : <IoBagAdd size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
                     <li onClick={() => navigate('/showTerms')}>
-                        {open ? <p> <FaClipboardList size={20} /> Show Terms </p> : <FaClipboardList size={20} />}
+                        {open ? <p> <FaClipboardList size={20} /> {t("Show Terms")} </p> : <FaClipboardList size={20} />}
                     </li>
                     : ''
                 }
                 {userType === 2 ?
                     <li onClick={() => navigate('/addTerms')}>
-                        {open ? <p> <MdAddTask size={20} /> Add Terms </p> : <MdAddTask size={20} />}
+                        {open ? <p> <MdAddTask size={20} /> {t("Add Terms")} </p> : <MdAddTask size={20} />}
                     </li>
                     : ''
                 }
 
 
                 <li onClick={handleSignout}>
-                    {open ? <p> <PiSignOutBold size={25} /> Sign Out</p> : <PiSignOutBold size={25} />}
+                    {open ? <p> <PiSignOutBold size={25} /> {t("Sign Out")}</p> : <PiSignOutBold size={25} />}
                 </li>
 
                 {color ?
                     <li onClick={changeColorMode}>
-                        {open ? <p> <MdDarkMode size={20} /> Enable Light Mode </p> : <MdDarkMode size={20} />}
+                        {open ? <p> <MdDarkMode size={20} /> {t("Enable Light Mode")} </p> : <MdDarkMode size={20} />}
                     </li>
                     :
                     <li onClick={changeColorMode}>
-                        {open ? <p> <MdOutlineDarkMode size={20} /> Enable Dark Mode </p> : <MdOutlineDarkMode size={20} />}
+                        {open ? <p> <MdOutlineDarkMode size={20} /> {t("Enable Dark Mode")} </p> : <MdOutlineDarkMode size={20} />}
                     </li>
                 }
 
                 <li >
-                    {open ? <p> <LanguageSelector />  Sign Out</p> :<LanguageSelector />  }
+                    {open ? <p> <LanguageSelector />  </p> : <LanguageSelector />}
                 </li>
 
             </ul>

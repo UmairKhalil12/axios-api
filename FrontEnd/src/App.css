@@ -9,6 +9,7 @@
   --background-color: #262626;
   --secondary-background-color: #1a1a1a;
   --secondary-border-color: whitesmoke;
+  --active-text : goldenrod;
 
 }
 
@@ -24,6 +25,7 @@ body.dark-mode {
   --background-color: #262626;
   --secondary-background-color: #1a1a1a;
   --secondary-border-color: whitesmoke;
+  --active-text : goldenrod
 }
 
 body.light-mode {
@@ -37,6 +39,7 @@ body.light-mode {
   --background-color: #f9f9f9;
   --secondary-background-color: #eaeaea;
   --secondary-border-color: #333;
+  --active-text : goldenrod
 }
 
 .App {

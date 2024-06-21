@@ -1,0 +1,33 @@
+.lang-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.lang-buttons button{
+    margin-right: 0.5rem;
+}
+
+.lang-btn{
+    background-color: var(--secondary-text);
+    color: var(--text-color);
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.lang-btn:hover{
+    background-color: var(--text-color);
+    color: var(--secondary-text);
+}
+
+.lang-btn-active{
+    background-color: var(--text-color);
+    color: var(--active-text);
+    padding: 0.5rem;
+    border: 2px solid var(--active-text);
+    border-radius: 5px;
+    cursor: pointer;
+}

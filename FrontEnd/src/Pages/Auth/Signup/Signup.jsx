@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import './Signup.css'
 import { useNavigate } from 'react-router-dom';
 import { GET_POST_METHOD } from '../../../Axios/axios';
@@ -7,6 +7,8 @@ import { emailValidation } from '../../../EmailValidation/EmaiValidation';
 import FormButton from "../../../Components/FormButton/FormButton"
 import { useTranslation } from 'react-i18next';
 //import Navbar from '../../../Components/Navbar/Navbar';
+import LanguageForm from '../../../Components/Language/LanguageForm';
+import ColorForm from '../../../Components/Color/ColorForm';
 
 
 export default function Signup() {
@@ -56,84 +58,90 @@ export default function Signup() {
 
     return (
         <>
-            <div className='signup-form'>
-                <div className='form-log'>
-                    <div className='input-div'>
-                        <Input
-                            placeholder={t("Name")}
-                            value={name}
-                            className='input-field'
-                            onChange={(e) => setName(e.target.value)}
-                        />
+            <div className='form-bg'>
+                <div className='signup-form'>
+                    <div className='form-log'>
+                        <div className='input-div'>
+                            <Input
+                                placeholder={t("Name")}
+                                value={name}
+                                className='input-field'
+                                onChange={(e) => setName(e.target.value)}
+                            />
+
+                            <Input
+                                placeholder={t("Enter Email")}
+                                value={email}
+                                className='input-field'
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='input-div'>
+                            <Input
+                                placeholder={t('Enter Phone Number')}
+                                value={phone}
+                                className='input-field'
+                                onChange={(e) => setPhone(e.target.value)}
+                            />
+
+                            <Input
+                                placeholder={t('Enter Password')}
+                                value={pass}
+                                className='input-field'
+                                onChange={(e) => setPass(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='input-div'>
+                            <Input
+                                placeholder={t('Confirm Password')}
+                                className='input-field'
+                                value={confirmPass}
+                                onChange={(e) => { setConfirmPass(e.target.value) }}
+                            />
+
+                            <Input
+                                placeholder={t('Enter Address')}
+                                value={address}
+                                className='input-field'
+                                onChange={(e) => setAddress(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='input-div'>
+                            <Input
+                                placeholder={t('Enter Location')}
+                                value={location}
+                                className='input-field'
+                                onChange={(e) => setLocation(e.target.value)}
+
+                            />
+
+                            <Input
+                                placeholder={t('Enter Show Room')}
+                                value={showRoom}
+                                className='input-field'
+                                onChange={(e) => setShowRoom(e.target.value)}
+                            />
+                        </div>
 
                         <Input
-                            placeholder={t("Enter Email")}
-                            value={email}
+                            placeholder={t('Enter Identifcation Number')}
+                            value={identifcation}
                             className='input-field'
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => setIdentification(e.target.value)}
                         />
+
+                        <FormButton text={t("Signup")} onClick={() => handleSignForm} />
+                        <p className='signup-para' onClick={() => navigate('/login')}>{t("already have an account? Login")}</p>
                     </div>
-
-                    <div className='input-div'>
-                        <Input
-                            placeholder={t('Enter Phone Number')}
-                            value={phone}
-                            className='input-field'
-                            onChange={(e) => setPhone(e.target.value)}
-                        />
-
-                        <Input
-                            placeholder={t('Enter Password')}
-                            value={pass}
-                            className='input-field'
-                            onChange={(e) => setPass(e.target.value)}
-                        />
-                    </div>
-
-                    <div className='input-div'>
-                        <Input
-                            placeholder={t('Confirm Password')}
-                            className='input-field'
-                            value={confirmPass}
-                            onChange={(e) => { setConfirmPass(e.target.value) }}
-                        />
-
-                        <Input
-                            placeholder={t('Enter Address')}
-                            value={address}
-                            className='input-field'
-                            onChange={(e) => setAddress(e.target.value)}
-                        />
-                    </div>
-
-                    <div className='input-div'>
-                        <Input
-                            placeholder={t('Enter Location')}
-                            value={location}
-                            className='input-field'
-                            onChange={(e) => setLocation(e.target.value)}
-
-                        />
-
-                        <Input
-                            placeholder={t('Enter Show Room')}
-                            value={showRoom}
-                            className='input-field'
-                            onChange={(e) => setShowRoom(e.target.value)}
-                        />
-                    </div>
-
-                    <Input
-                        placeholder={t('Enter Identifcation Number')}
-                        value={identifcation}
-                        className='input-field'
-                        onChange={(e) => setIdentification(e.target.value)}
-                    />
-
-                    <FormButton text={t("Signup")} onClick={() => handleSignForm} />
-                    <p className='signup-para' onClick={() => navigate('/login')}>{t("already have an account? Login")}</p>
+                </div>
+                <div className='language-btn-container'>
+                    <LanguageForm />
                 </div>
 
+                <ColorForm />
             </div>
         </>
     )

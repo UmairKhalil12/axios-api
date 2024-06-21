@@ -1,3 +1,4 @@
+import "./AddItems.css"
 import React, { useCallback, useEffect, useState } from 'react'
 import FormButton from '../../../Components/FormButton/FormButton';
 import Input from '../../../Components/Input/Input';
@@ -14,8 +15,6 @@ export default function AddItems() {
     const [tax, setTax] = useState('');
     const [discount, setDiscount] = useState('');
     const [itemDetails, setItemDetails] = useState('');
-
-    const{t} = useTranslation(); 
 
     const userData = useSelector(state => state.user.userData);
     console.log(userData);
@@ -84,11 +83,13 @@ export default function AddItems() {
         }
     }, [id, getItemById])
 
+    const{t} = useTranslation("items"); 
+
     return (
         <>
             <SideNav />
             <div className='background' >
-                <h1 style={{textAlign : 'center'}}>{t("Add Items")}</h1>
+                <h1 className='heading-items'>{t("Add Items")}</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
                         <div className='input-div'>

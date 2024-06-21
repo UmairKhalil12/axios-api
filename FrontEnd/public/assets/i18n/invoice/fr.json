@@ -4,5 +4,9 @@
     "Bank Info": "Infos Bancaires",
     "Description": "Description",
     "Qr": "Qr",
-    "Update Invoice": "Mettre à jour la facture"
+    "Update Invoice": "Mettre à jour la facture",
+    "Update": "Mettre à Jour",
+    "Remove": "Supprimer",
+    "QR code" : "Code QR",
+    "Go Back" : "Retourner"
 }

@@ -15,8 +15,11 @@
     "Action": "Action",
     "Name": "Nom",
     "Business Data": "Données de l'Entreprise",
-    "Add staff": "Ajouter du Personnel",
+    "Add Staff": "Ajouter du Personnel",
     "Edit": "Modifier",
     "Remove": "Supprimer",
-    "Staffs": "Personnel"
+    "Staffs": "Personnel",
+    "Go Back" : "Retourner",
+    "Owner Name" : "Nom du propriétaire",
+    "Enter Identification Number" : "Entrer le numéro d'identification"
 }

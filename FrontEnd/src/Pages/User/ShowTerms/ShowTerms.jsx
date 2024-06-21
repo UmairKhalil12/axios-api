@@ -60,8 +60,8 @@ export default function ShowTerms() {
             {loading ? <Loader /> : (
                 <div className='div-terms'>
                     <div>
-                        <h1>{t("Show terms")}</h1>
-                        <Button text="Add Terms" onClick={() => navigate('/addTerms')} />
+                        <h1>{t("Show Terms")}</h1>
+                        <Button text={t("Add Terms")} onClick={() => navigate('/addTerms')} />
                         <br />
                         <div>
                             <table className="table-terms">

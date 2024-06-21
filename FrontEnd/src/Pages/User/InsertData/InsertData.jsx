@@ -112,7 +112,7 @@ export default function InsertData() {
         }
     }
 
-    const{t} = useTranslation('business'); 
+    const { t } = useTranslation('business');
 
     return (
         <>
@@ -187,7 +187,7 @@ export default function InsertData() {
                         </div>
                         <FormButton text={id ? t("Update Data ") : t("Add Data")} />
 
-                        <p className='form-para-goback' onClick={() => navigate('/home')} >Go Back</p>
+                        <p className='form-para-goback' onClick={() => navigate('/home')} >{t("Go Back")}</p>
                     </form>
 
                 </div>

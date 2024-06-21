@@ -1,0 +1,15 @@
+.language-btn-container{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 1rem;
+
+}
+
+.form-colorMode{
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+

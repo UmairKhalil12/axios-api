@@ -1,10 +1,15 @@
+.form-bg{
+    min-height: 100vh;
+    height: 100%;
+    background: var(--background-gradient);
+    padding-top: 2rem;
+}
+
 .login-form {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100vh;
-    background: var(--background-gradient);
 }
 
 .form-log {
@@ -59,6 +64,8 @@
     margin-top: 1rem;
 }
 
+
+
 @media screen and (max-width : 550px) {
     .input-field {
         width: 180px;
@@ -68,3 +75,4 @@
         width: 190px;
     }
 }
+

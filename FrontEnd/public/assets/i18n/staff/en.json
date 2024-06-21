@@ -14,5 +14,7 @@
     "Item Price" : "Item Price",
     "Item Type" : "Item Type",
     "Item Details" : "Item Details",
-    "Add Item" : "Add Item" 
+    "Add Item" : "Add Item",
+    "Update" : "Update",
+    "Remove" : "Remove"
 }

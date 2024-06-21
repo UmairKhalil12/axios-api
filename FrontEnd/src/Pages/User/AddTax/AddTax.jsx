@@ -78,6 +78,7 @@ export default function AddTax() {
         <>
             <SideNav />
             <div className='background' >
+                <h1 className='heading-tax'>{id ? t('Update Tax') : t('Add Tax')}</h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
                         <Input

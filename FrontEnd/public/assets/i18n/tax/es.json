@@ -3,5 +3,8 @@
     "Add Tax": "Agregar Impuesto",
     "Tax Name": "Nombre del Impuesto",
     "Tax Rate": "Tasa de Impuesto",
-    "Actions": "Acciones"
+    "Actions": "Acciones",
+    "Update": "Actualizar",
+    "Remove": "Eliminar",
+    "Go Back" : "Volver"
 }

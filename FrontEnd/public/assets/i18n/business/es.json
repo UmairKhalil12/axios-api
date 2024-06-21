@@ -14,9 +14,12 @@
   "Owner's Name": "Nombre del Propietario",
   "Action": "Acción",
   "Name": "Nombre",
-  "Business Data" : "Datos de Negocios",
-  "Add Staff" : " Agregar Personal",
-  "Edit" : "Editar",
-  "Remove" : "Eliminar",
-  "Staffs": "Personal"
+  "Business Data": "Datos de Negocios",
+  "Add Staff": " Agregar Personal",
+  "Edit": "Editar",
+  "Remove": "Eliminar",
+  "Staffs": "Personal",
+  "Go Back": "Volver",
+  "Owner Name": "Nombre del propietario",
+  "Enter Identification Number": "Ingrese el número de identificación"
 }

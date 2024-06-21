@@ -78,6 +78,7 @@ export default function AddTerms() {
         <>
             <SideNav />
             <div className='background' >
+                <h1 className='heading-terms' >{id ? t('Update Terms and Conditions') : t('Add Terms and Conditions')} </h1>
                 <div className='signup-form-2'>
                     <form className='form-log' onSubmit={handleForm}>
 

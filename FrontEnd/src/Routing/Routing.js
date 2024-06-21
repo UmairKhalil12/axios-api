@@ -15,6 +15,7 @@ import AddTax from "../Pages/User/AddTax/AddTax";
 import ShowTax from "../Pages/User/ShowTax/ShowTax";
 import ShowTerms from "../Pages/User/ShowTerms/ShowTerms";
 import AddTerms from "../Pages/User/AddTerms/AddTerms";
+import Loader from "../Components/Loader/Loader";
 
 import { Suspense } from "react";
 
@@ -41,7 +42,7 @@ export default function Routing() {
 
 
     return (
-        <Suspense fallback = {"Loading.."} >
+        <Suspense fallback = {<Loader />} >
             <BrowserRouter>
                 <Routes>
                     {origUser.user ? (

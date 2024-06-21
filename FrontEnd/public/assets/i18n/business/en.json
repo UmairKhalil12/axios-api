@@ -9,8 +9,15 @@
     "Business Website": "Business Website",
     "Address": "Address",
     "Add Data": "Add Data",
-    "Owner's Name" : "Owner's Name",
+    "Owners Name" : "Owner's Name",
     "Number" : "Number",
-    "Website" : "Website"
-
+    "Website" : "Website",
+    "Go Back" : "Go Back",
+    "Action": "Action",
+    "Name": "Name",
+    "Business Data" : "Business Data",
+    "Add Staff" : " Add Staff",
+    "Edit" : "Edir",
+    "Remove" : "Remove",
+    "Staffs": "Staffs"
 }

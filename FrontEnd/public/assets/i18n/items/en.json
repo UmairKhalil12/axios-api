@@ -12,5 +12,9 @@
     "Item Price" : "Item Price",
     "Item Type" : "Item Type",
     "Item Details" : "Item Details",
-    "Add Item" : "Add Item" 
+    "Add Item" : "Add Item" ,
+    "Add Items" : "Add Items",
+    "Go Back" : "Go Back",
+    "Update" : "Update",
+    "Remove" : "Remove"
 }

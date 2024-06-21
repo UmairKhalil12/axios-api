@@ -68,7 +68,7 @@ export default function Business() {
             <SideNav />
             {loading ? <Loader /> : (
                 <div className='business-container'>
-                    <h1>{t("Business Data")}</h1>
+                    <h1 className='heading-business'>{t("Business Data")}</h1>
                     {business?.map((value, index) => {
                         return (
                             <div className='business-info-main'>
@@ -82,12 +82,12 @@ export default function Business() {
                                     <Button text={t("Add Staff")} onClick={() => { navigate(`/addStaff/${businessId}`) }} />
                                     <h1>{value?.BusinessName}</h1>
                                     <div className='business-info'>
-                                        <p><span><b>{t("Owner's Name") } : </b></span>{value?.BusinessOwnerName}</p>
-                                        <p><span><b>{t('Website') }: </b></span>{value?.WebSite}</p>
-                                        <p><span><b>{t('Business Number') } : </b></span>{value?.BusinessNumber}</p>
-                                        <p><span><b>{t('Email') } : </b></span>{value?.Email}</p>
+                                        <p><span><b>{t("Owner's Name")} : </b></span>{value?.BusinessOwnerName}</p>
+                                        <p><span><b>{t('Website')}: </b></span>{value?.WebSite}</p>
+                                        <p><span><b>{t('Business Number')} : </b></span>{value?.BusinessNumber}</p>
+                                        <p><span><b>{t('Email')} : </b></span>{value?.Email}</p>
                                     </div>
-                                    {staff.length > 0 ? <h3>Staffs</h3> : ""}
+                                    {staff.length > 0 ? <h3>{t("Staffs")}</h3> : ""}
                                     {staff.length > 0 ? (
                                         <div className='staff-table'>
                                             <table>
