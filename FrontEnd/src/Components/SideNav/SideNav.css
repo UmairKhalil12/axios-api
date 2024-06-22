@@ -100,3 +100,7 @@
 .sidebar.open select{
     width: 180px;
 }
+
+.active{
+    color: var(--active-text);
+}

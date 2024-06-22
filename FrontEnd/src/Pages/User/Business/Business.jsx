@@ -82,7 +82,7 @@ export default function Business() {
                                     <Button text={t("Add Staff")} onClick={() => { navigate(`/addStaff/${businessId}`) }} />
                                     <h1>{value?.BusinessName}</h1>
                                     <div className='business-info'>
-                                        <p><span><b>{t("Owner's Name")} : </b></span>{value?.BusinessOwnerName}</p>
+                                        <p><span><b>{t("Owners Name")} : </b></span>{value?.BusinessOwnerName}</p>
                                         <p><span><b>{t('Website')}: </b></span>{value?.WebSite}</p>
                                         <p><span><b>{t('Business Number')} : </b></span>{value?.BusinessNumber}</p>
                                         <p><span><b>{t('Email')} : </b></span>{value?.Email}</p>

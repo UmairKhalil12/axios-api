@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './SideNav.css';
 import { IoHomeSharp } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
@@ -49,8 +49,15 @@ const Sidebar = () => {
     };
 
     const { t } = useTranslation('sidenav');
-    const {i18n} = useTranslation();
-    const lang = i18n.language
+    const { i18n } = useTranslation();
+    const lang = i18n.language;
+
+    const location = useLocation();
+    const isActiveRoute = (route) => {
+        return location.pathname === route;
+    };
+
+    console.log("sidenav isActiveroute", isActiveRoute());
 
     return (
         <div className={`sidebar ${open ? 'open' : ''}`}>
@@ -60,59 +67,61 @@ const Sidebar = () => {
                 </div>
             </div>
 
-            <ul className={ lang === 'ur' ? "nav-links-ur" : "nav-links"}>
+            <ul className={lang === 'ur' ? "nav-links-ur" : "nav-links"}>
 
-                <li onClick={() => navigate('/home')}>
+                <li onClick={() => navigate('/home')} >
+                    {open ? <p> <FaUser size={20} /> {userData[0].Name}</p> : <FaUser size={20} />}
+                </li>
+
+
+                <li onClick={() => navigate('/home')} className={isActiveRoute("/home") ? 'active' : ''} >
                     {open ? <p> <IoHomeSharp size={20} /> {t("Home")} </p> : <IoHomeSharp size={20} />}
                 </li>
-                <li onClick={handleAddDataClick}>
+
+                <li onClick={handleAddDataClick} className={isActiveRoute("/addItems") || isActiveRoute("/addData") ? 'active' : ''} >
                     {open ? (
                         <p> <IoMdAdd size={20} /> {userType === 0 ? t('Add Business') : t('Add Items')}</p>
                     ) : (
                         <IoMdAdd size={20} />
                     )}
                 </li>
-                <li onClick={() => navigate('/home')}>
-                    {open ? <p> <FaUser size={20} /> {userData[0].Name}</p> : <FaUser size={20} />}
-                </li>
-
 
                 {userType === 2 ?
-                    <li onClick={() => navigate('/showInvoice')}>
+                    <li onClick={() => navigate('/showInvoice')} className={isActiveRoute("/showInvoice") ? 'active' : ''} >
                         {open ? <p> <FaFileInvoiceDollar size={20} /> {t("Show Invoice")} </p> : <FaFileInvoiceDollar size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
-                    <li onClick={() => navigate('/addInvoice')}>
+                    <li onClick={() => navigate('/addInvoice')} className={isActiveRoute("/addInvoice") ? 'active' : ''} >
                         {open ? <p> <MdAssignmentAdd size={20} /> {t("Add Invoice")} </p> : <MdAssignmentAdd size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
-                    <li onClick={() => navigate('/showTax')}>
+                    <li onClick={() => navigate('/showTax')} className={isActiveRoute("/showTax") ? 'active' : ''} >
                         {open ? <p> <TbZoomMoneyFilled size={20} /> {t("Show Taxes")} </p> : <TbZoomMoneyFilled size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
-                    <li onClick={() => navigate('/addTax')}>
+                    <li onClick={() => navigate('/addTax')} className={isActiveRoute("/addTax") ? 'active' : ''} >
                         {open ? <p> <IoBagAdd size={20} /> {t("Add Taxes")} </p> : <IoBagAdd size={20} />}
                     </li>
                     : ''
                 }
 
                 {userType === 2 ?
-                    <li onClick={() => navigate('/showTerms')}>
+                    <li onClick={() => navigate('/showTerms')} className={isActiveRoute("/showTerms") ? 'active' : ''}>
                         {open ? <p> <FaClipboardList size={20} /> {t("Show Terms")} </p> : <FaClipboardList size={20} />}
                     </li>
                     : ''
                 }
                 {userType === 2 ?
-                    <li onClick={() => navigate('/addTerms')}>
+                    <li onClick={() => navigate('/addTerms')} className={isActiveRoute("/addTerms") ? 'active' : ''} >
                         {open ? <p> <MdAddTask size={20} /> {t("Add Terms")} </p> : <MdAddTask size={20} />}
                     </li>
                     : ''
