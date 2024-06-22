@@ -18,6 +18,7 @@ import AddTerms from "../Pages/User/AddTerms/AddTerms";
 import Loader from "../Components/Loader/Loader";
 
 import { Suspense } from "react";
+import GenerateInvoice from "../Pages/User/GenerateInvoice/GenerateInvoice";
 
 export default function Routing() {
     const origUser = useSelector(state => state.user);
@@ -42,7 +43,7 @@ export default function Routing() {
 
 
     return (
-        <Suspense fallback = {<Loader />} >
+        <Suspense fallback={<Loader />} >
             <BrowserRouter>
                 <Routes>
                     {origUser.user ? (
@@ -65,7 +66,7 @@ export default function Routing() {
                             <Route path='/showTerms' element={<ShowTerms />} />
                             <Route path="/addTerms" element={<AddTerms />} />
                             <Route path="/editTerms/:id" element={<AddTerms />} />
-
+                            <Route path="/generateInvoice" element={<GenerateInvoice />} />
                         </>
                     ) : (
                         <>

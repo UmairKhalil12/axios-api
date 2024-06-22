@@ -57,8 +57,6 @@ const Sidebar = () => {
         return location.pathname === route;
     };
 
-    console.log("sidenav isActiveroute", isActiveRoute());
-
     return (
         <div className={`sidebar ${open ? 'open' : ''}`}>
             <div className='top-menu'>

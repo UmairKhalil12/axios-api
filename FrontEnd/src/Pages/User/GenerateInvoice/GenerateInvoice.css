@@ -1,0 +1,18 @@
+/* .select-item{;
+} */
+
+.background{
+    min-height: 100vh;
+    height: 100%;
+}
+
+.heading-invoice{
+    color: var(--text-color);
+    text-align: center;
+    padding-top:1rem ;
+}
+
+.item-select-table{
+    border: 1px solid var(--border-color);
+    border-collapse: collapse;
+}
