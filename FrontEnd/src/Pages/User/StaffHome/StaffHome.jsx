@@ -68,14 +68,14 @@ export default function StaffHome() {
                     <div className='staff-home-2'>
                         <h1>{t('Staff Home')}</h1>
                         <p>{t("Welcome to the staff home page!")}</p>
-                        {items?.length > 0 ? <h3>Items</h3> : ''}
+                        {items?.length > 0 ? <h3>{t("Items")}</h3> : ''}
                         {items?.length > 0 ? (
                             <div className='table-div'>
                                 <table className='item-table'>
                                     <thead>
                                         <tr>
                                             <th>{t('Name')}</th>
-                                            <th>{t('type')}</th>
+                                            <th>{t('Type')}</th>
                                             <th>{t('Price')}</th>
                                             <th>{t('Discount')}</th>
                                             <th>{t('Tax')}</th>

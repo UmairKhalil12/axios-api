@@ -15,6 +15,7 @@ import { FaClipboardList } from "react-icons/fa";
 import { MdAddTask } from "react-icons/md";
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 import LanguageSelector from '../Language/LanguageSelector';
 import { useTranslation } from 'react-i18next';
 
@@ -48,16 +49,18 @@ const Sidebar = () => {
     };
 
     const { t } = useTranslation('sidenav');
+    const {i18n} = useTranslation();
+    const lang = i18n.language
 
     return (
         <div className={`sidebar ${open ? 'open' : ''}`}>
             <div className='top-menu'>
                 <div className="menu-icon-container" onClick={() => setOpen(!open)}>
-                    {open ? <span>&#8592; {t("Back")}</span> : <span>☰ </span>}
+                    {open ? <span>&#8592; {t("Back")}</span> : <RxHamburgerMenu size={20} />}
                 </div>
             </div>
 
-            <ul className="nav-links">
+            <ul className={ lang === 'ur' ? "nav-links-ur" : "nav-links"}>
 
                 <li onClick={() => navigate('/home')}>
                     {open ? <p> <IoHomeSharp size={20} /> {t("Home")} </p> : <IoHomeSharp size={20} />}

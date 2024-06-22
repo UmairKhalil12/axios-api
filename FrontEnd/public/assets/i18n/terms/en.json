@@ -1,9 +1,10 @@
 {
     "Show Terms" : "Show Terms",
     "Add Terms" : "Add Terms",
-    "Terms Conditions" : "Terms Conditions",
+    "Terms and Conditions" : "Terms and Conditions",
     "Update Terms and Conditions" : "Update Terms and Conditions",
     "Add Terms and Conditions" : "Add Terms and Conditions",
     "Update" : "Update",
-    "Remove" : "Remove"
+    "Remove" : "Remove",
+    "Go Back" : "Go Back" 
 }

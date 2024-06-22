@@ -1,4 +1,4 @@
-.input{
+.input {
     height: 30px;
     width: 250px;
     border: none;
@@ -9,30 +9,53 @@
     padding-left: 2rem;
 }
 
-.input::placeholder{
+.input-ur{
+    height: 30px;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid var(--secondary-border-color);
+    background-color: transparent;
     font-size: large;
-    color:var(--light-table-color);
+    color: var(--text-color);
+    padding-right: 2rem;
+}
+
+.input::placeholder, .input-ur::placeholder {
+    font-size: large;
+    color: var(--light-table-color);
     /* padding-left: 0.5rem; */
 }
 
-.label{
+.label {
     text-align: left;
 }
 
-.email-icn{
+.email-icn {
     position: relative;
     top: 6px;
     left: -88%;
 }
 
-.password-icn{
+.email-icn-ur {
+    position: relative;
+    top: 6px;
+    left: 88%;
+}
+
+.password-icn {
     position: relative;
     left: -88%;
     top: 5px;
 }
 
+.password-icn-ur {
+    position: relative;
+    top: 5px;
+    left: 88%;
+}
+
 @media screen and (max-width : 550px) {
-    .input{
+    .input {
         width: 180px;
     }
 }

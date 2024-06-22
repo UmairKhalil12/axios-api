@@ -34,8 +34,8 @@ body.light-mode {
   --dark-table-color: #ddd;
   --light-table-color: #eee;
   --border-color: #000;
-  --form-background: rgba(100, 100, 100, 0.35);
-  --secondary-text: darkgray;
+  --form-background: rgba(150, 150, 150, 0.35);
+  --secondary-text: rgb(146, 146, 146);
   --background-color: #f9f9f9;
   --secondary-background-color: #eaeaea;
   --secondary-border-color: #333;

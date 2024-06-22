@@ -1,4 +1,12 @@
-select{
+.lang-select{
     background-color: var(--secondary-text);
     color: var(--text-color);
+    width: 80%;
+    height: 25px;
+}
+
+.lang-selector-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,0 +1,20 @@
+{
+    "Items" : "اشیاء",
+    "Name" : "نام",
+    "Type" : "قسم",
+    "Price" : "قیمت",
+    "Discount" : "رعایت",
+    "Tax" : "ٹیکس",
+    "Final Price" : "آخری قیمت",
+    "Details" : "تفصیلات",
+    "Actions" : "عمل",
+    "Item Name" : "شے کا نام",
+    "Item Price" : "شے کی قیمت",
+    "Item Type" : "شے کی قسم",
+    "Item Details" : "شے کی تفصیلات",
+    "Add Item" : "شے شامل کریں",
+    "Add Items" : "اشیاء شامل کریں",
+    "Go Back" : "واپس جائیں",
+    "Update" : "اپ ڈیٹ کریں",
+    "Remove" : "ہٹائیں"
+}

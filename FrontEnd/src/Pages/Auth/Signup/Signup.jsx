@@ -127,7 +127,7 @@ export default function Signup() {
                         </div>
 
                         <Input
-                            placeholder={t('Enter Identifcation Number')}
+                            placeholder={t('Enter Identification Number')}
                             value={identifcation}
                             className='input-field'
                             onChange={(e) => setIdentification(e.target.value)}
