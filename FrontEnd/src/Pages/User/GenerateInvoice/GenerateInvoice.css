@@ -1,18 +1,90 @@
-/* .select-item{;
-} */
-
-.background{
+.background {
     min-height: 100vh;
     height: 100%;
 }
 
-.heading-invoice{
+.heading-invoice {
     color: var(--text-color);
     text-align: center;
-    padding-top:1rem ;
+    padding-top: 1rem;
 }
 
-.item-select-table{
+.item-select-table {
     border: 1px solid var(--border-color);
     border-collapse: collapse;
 }
+
+.invoice-select {
+    width: auto;
+    background-color: var(--form-background);
+    color: var(--text-color);
+    font-size: large;
+}
+
+.select-item-tax {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.no-border {
+    border: none;
+}
+
+
+.bank-terms {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.bank-term-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.no-border-bottom {
+    border: none;
+    border-bottom: 1.35px solid var(--border-color);
+}
+
+.pdf-content {
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    padding: 20px;
+    margin: 2rem;
+}
+
+.pdf-content table,
+.pdf-content td,
+.pdf-content tr,
+.pdf-content th {
+    border: none;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.pdf-content input {
+    border: none;
+    color: black;
+    font-size: 14px;
+}
+
+.pdf-content table {
+    border: none;
+}
+
+.pdf-content tr:nth-last-child(1) td, .pdf-content tr:nth-last-child(2) td, .pdf-content tr:nth-last-child(3) td{
+    border: none;
+}
+
+.pdf-content table tr{
+    border: none;
+}
+
+/* .pdf-content table tr:last-child td{
+    border: none;
+} */

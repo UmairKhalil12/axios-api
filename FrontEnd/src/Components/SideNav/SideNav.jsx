@@ -18,6 +18,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import LanguageSelector from '../Language/LanguageSelector';
 import { useTranslation } from 'react-i18next';
+import { PiInvoiceBold } from "react-icons/pi";
 
 
 const Sidebar = () => {
@@ -29,7 +30,7 @@ const Sidebar = () => {
     const userType = userData.length > 0 ? userData[0].UserType : null;
 
     const color = useSelector(state => state.user.color);
-    console.log(color);
+    //console.log(color);
 
     const changeColorMode = () => {
         dispatch(colorInfo(!color));
@@ -140,10 +141,13 @@ const Sidebar = () => {
                     </li>
                 }
 
+                <li onClick={() => navigate("/generateInvoice")}>
+                    {open ? <p> <PiInvoiceBold size={20} />   Generate Invoice</p> : <PiInvoiceBold size={20} />}
+                </li>
+
                 <li >
                     {open ? <p> <LanguageSelector />  </p> : <LanguageSelector />}
                 </li>
-
             </ul>
         </div>
     );

@@ -4,15 +4,15 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { MdLockOutline } from "react-icons/md";
 
 
-export default function Input({ label, placeholder, onChange, type, value }) {
+export default function Input({ label, placeholder, onChange, type, value, min, style }) {
 
-    const {i18n} = useTranslation(); 
+    const { i18n } = useTranslation();
     const lang = i18n.language;
     // console.log('input component',lang);
 
     const renderEmail = () => {
         if (type === "email") {
-            return <MdOutlineMailOutline size={25} className={ lang === 'ur' ? "email-icn-ur" : 'email-icn'} />
+            return <MdOutlineMailOutline size={25} className={lang === 'ur' ? "email-icn-ur" : 'email-icn'} />
         }
     }
 
@@ -33,7 +33,10 @@ export default function Input({ label, placeholder, onChange, type, value }) {
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
-                className={ lang === 'ur' ? "input-ur" : 'input'}
+                className={lang === 'ur' ? "input-ur" : 'input'}
+                style={style}
+                min={min}
+
             />
             {renderEmail()}
             {renderPass()}
