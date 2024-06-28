@@ -19,7 +19,7 @@ export default function BusinessHome() {
 
     const navigate = useNavigate();
 
-    const handleDelete = useCallback(async (index) => {
+    const handleDelete = async (index) => {
         try {
             await GET_DELETE_BY_ID(`IMBusiness/DeleteBusiness?Id=${index}`);
             window.alert("Deleted sucessfully");
@@ -28,7 +28,7 @@ export default function BusinessHome() {
             console.log(`error deleting data of id ${index} `, error.message);
         }
 
-    }, [])
+    }
 
     useEffect(() => {
         const fetchData = async () => {
