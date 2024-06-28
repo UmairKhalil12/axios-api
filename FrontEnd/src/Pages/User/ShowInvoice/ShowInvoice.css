@@ -11,7 +11,9 @@
     color: var(--text-color);
 }
 
-.table-invoice{
+.table-invoice , .table-invoice th , .table-invoice td , .table-invoice tr{
+    border: 1px solid var(--border-color);
+    padding: 8px;
     border-collapse: collapse;
 }
 

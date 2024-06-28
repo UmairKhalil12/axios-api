@@ -47,7 +47,7 @@
     margin: 1rem;
 }
 
-.staff-table table , td , tr, th{
+.staff-table table ,.staff-table td ,.staff-table tr,.staff-table th{
     border: 1px solid var(--border-color);
     border-collapse: collapse;
     padding: 8px;

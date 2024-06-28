@@ -11,6 +11,8 @@
     color: var(--text-color);
 }
 
-.table-tax {
+.table-tax , .table-tax td , .table-tax th , .table-tax tr{
     border-collapse: collapse;
+    border: 1px solid var(--border-color);
+    padding: 8px;
 }

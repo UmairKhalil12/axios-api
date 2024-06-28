@@ -11,6 +11,8 @@
     color:var(--text-color);
 }
 
-.table-terms {
+.table-terms , .table-terms td , .table-terms th , .table-terms td{
+    border: 1px solid var(--border-color);
     border-collapse: collapse;
+    padding: 8px;
 }

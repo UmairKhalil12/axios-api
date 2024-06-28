@@ -9,6 +9,8 @@ import Loader from '../../../Components/Loader/Loader';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+
 
 export default function GenerateInvoice() {
     const [loading, setLoading] = useState(true);
@@ -48,10 +50,6 @@ export default function GenerateInvoice() {
     useEffect(() => {
         getAll();
     }, []);
-
-    // console.log(tax);
-    // console.log(terms);
-    // console.log(bank);
 
     const handleSelectItems = (event) => {
         const selectedOptions = Array.from(event.target.selectedOptions);
@@ -96,13 +94,14 @@ export default function GenerateInvoice() {
     const calculateTotalTax = () => {
         const subTotal = calculateSubTotal();
         return selectedTax.reduce((total, tax) => {
-            return total + (tax.TaxRate / 100) * subTotal;
+            let taxTotal = total + (tax.TaxRate / 100) * subTotal;
+            return parseFloat(taxTotal.toFixed(2));
         }, 0);
     };
 
     const subTotal = calculateSubTotal();
     const totalTax = calculateTotalTax();
-    const grandTotal = subTotal + totalTax;
+    const grandTotal = subTotal - totalTax;
 
     const handleSelectBank = (event) => {
         const bankId = event.target.value;
@@ -112,7 +111,7 @@ export default function GenerateInvoice() {
 
     };
 
-    console.log('selectedBanks', selectedBank);
+    // console.log('selectedBanks', selectedBank);
 
     const handleSelectTerms = (event) => {
         const selectedOptions = Array.from(event.target.selectedOptions);
@@ -121,26 +120,34 @@ export default function GenerateInvoice() {
         setSelectedTerms(selectedTermObjects);
     }
 
-
     const handleGeneratePdf = async (event) => {
         event.preventDefault();
-
         const element = printRef.current;
-        element.classList.add('pdf-content', 'no-border', 'no-border-bottom');
+        element.classList.add('pdf-content');
 
         const canvas = await html2canvas(element, { scale: 2 });
         const imgData = canvas.toDataURL('image/png');
 
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+        const pdfHeight = pdf.internal.pageSize.getHeight();
 
-        const margin = 10;
-        pdf.addImage(imgData, 'PNG', margin, margin, pdfWidth - 2 * margin, pdfHeight - 2 * margin);
+        const imgProps = pdf.getImageProperties(imgData);
+        const imgWidth = imgProps.width;
+        const imgHeight = imgProps.height;
+
+        const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+
+        const width = imgWidth * scale;
+        const height = imgHeight * scale;
+
+        const x = (pdfWidth - width) / 2;
+        const y = (pdfHeight - height) / 2;
+
+        pdf.addImage(imgData, 'PNG', x, y, width, height);
         pdf.save('download.pdf');
 
-        // Remove the PDF-specific class
-        element.classList.remove('pdf-content', 'pdf-content-table', 'pdf-content-td', 'pdf-content-tr');
+        element.classList.remove('pdf-content');
     };
 
     const printRef = useRef();
@@ -150,6 +157,14 @@ export default function GenerateInvoice() {
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
+    const generateRandomInvoiceNumber = () => {
+        const randomNumber = Math.random() * 1000000000;
+        const invoiceNumber = 'INV' + Math.floor(randomNumber).toString();
+        return invoiceNumber;
+    };
+
+    const { t } = useTranslation('invoice');
+
     return (
         <>
             {loading ? <Loader /> :
@@ -157,20 +172,20 @@ export default function GenerateInvoice() {
                     <>
                         <SideNav />
                         <div className='background'>
-                            <h1 className='heading-invoice'>Generate Invoice</h1>
+                            <h1 className='heading-invoice'>{t("Generate Invoice")}</h1>
                             <div className='signup-form-2'>
                                 <form className='form-log' onSubmit={handleGeneratePdf}>
                                     <div className='input-div'>
                                         <Input
                                             type="date"
-                                            placeholder='Date'
+                                            placeholder={t("Date")}
                                             value={date}
                                             className='input-field'
                                             onChange={(e) => setDate(e.target.value)}
                                         />
                                         <Input
                                             type="date"
-                                            placeholder='Due Date'
+                                            placeholder={t("Due Date")}
                                             value={dueDate}
                                             className='input-field'
                                             onChange={(e) => setDueDate(e.target.value)}
@@ -180,7 +195,7 @@ export default function GenerateInvoice() {
                                     {date && dueDate && (
                                         <div className='select-item-tax'>
                                             <div>
-                                                <label htmlFor='items'>Select Items:</label> <br />
+                                                <label htmlFor='items'>{t("Select Items")}:</label> <br />
                                                 <select multiple onChange={handleSelectItems} className='invoice-select' name='items'>
                                                     {items?.map((val) => (
                                                         <option key={val?.Id} value={val?.Id}>
@@ -193,7 +208,7 @@ export default function GenerateInvoice() {
                                             <div>
                                                 {selectedItems.length > 0 && (
                                                     <>
-                                                        <label>Select Taxes:</label> <br />
+                                                        <label>{t("Select Taxes")}:</label> <br />
                                                         <select multiple onChange={handleSelectTax} className='invoice-select' name='tax'>
                                                             {tax?.map((val) => (
                                                                 <option key={val?.Id} value={val?.Id}>
@@ -213,7 +228,7 @@ export default function GenerateInvoice() {
 
                                         <div className='bank-terms'>
                                             <div>
-                                                <label htmlFor='bank'>Select Bank:</label> <br />
+                                                <label htmlFor='bank'>{t("Select Bank")}:</label> <br />
                                                 <select onChange={handleSelectBank} className='invoice-select' name='bank'>
                                                     {bank?.map((val) => (
                                                         <option key={val?.Id} value={val?.Id}>
@@ -224,7 +239,7 @@ export default function GenerateInvoice() {
                                             </div>
 
                                             <div>
-                                                <label htmlFor='terms'>Select Terms and Conditions:</label> <br />
+                                                <label htmlFor='terms'>{t("Select Terms and Conditions")}:</label> <br />
                                                 <select onChange={handleSelectTerms} className='invoice-select' name='terms' multiple>
                                                     {terms?.map((val) => (
                                                         <option key={val?.Id} value={val?.Id}>
@@ -236,52 +251,41 @@ export default function GenerateInvoice() {
                                         </div>
                                         : null
                                     }
-                                    <div ref={printRef}  className='pdf-content'  >
+                                    <div ref={printRef} >
                                         {selectedItems.length > 0 && (
                                             <div>
-                                                <h1>Invoice</h1>
-                                                <div>
-                                                    <p> <b>Date:</b>  {formatDate(date)}</p>
-                                                    <p><b>Due Date:</b> {formatDate(date)}</p>
-                                                </div>
-                                                {selectedBank || selectedTax.length > 0 ? (
-                                                    <div className='bank-term-div'>
-                                                        <div className='bank'>
-                                                            <h3>Bank Info </h3>
-                                                            <p>{selectedBank?.BankInfo}</p>
-                                                        </div>
-
-                                                        <div className='term'>
-                                                            <h3>Terms and Conditions</h3>
-                                                            {selectedTerms.map((value) => {
-                                                                return (
-                                                                    <>
-                                                                        <p>{value?.TermsCondition}</p>
-                                                                    </>
-                                                                )
-                                                            })}
-                                                        </div>
+                                                <h1>{t("Invoice")}</h1>
+                                                <p> <b>Invoice no:</b> {generateRandomInvoiceNumber()}</p>
+                                                <div className='date-payment-info'>
+                                                    <div>
+                                                        <h4>{t("Date")}</h4>
+                                                        <p> <b>{t("Date")}:</b>  {formatDate(date)}</p>
+                                                        <p><b>{t("Due Date")}:</b> {formatDate(dueDate)}</p>
                                                     </div>
 
-                                                ) : null}
-                                                <h3>Item Details</h3>
-                                                <table className='item-select-table no-border'>
+                                                    <div className='bank'>
+                                                        <h4>{t("Payment Information")}</h4>
+                                                        <p>{selectedBank?.BankInfo}</p>
+                                                        <p>{selectedBank?.OtherDescription}</p>
+                                                    </div>
+                                                </div>
+
+                                                <table className='item-select-table' >
                                                     <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Quantity</th>
-                                                            <th>Unit Price</th>
-                                                            <th>Total</th>
+                                                        <tr className='no-border-bottom'>
+                                                            <th className='no-border-bottom' >{t("Name")}</th>
+                                                            <th className='no-border-bottom'>{t("Quantity")}</th>
+                                                            <th className='no-border-bottom' >  {t("Unit Price")}</th>
+                                                            <th className='no-border-bottom' >{t("Total")}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {selectedItems.map(item => (
-                                                            <tr key={item.Id}>
-                                                                <td>
-                                                                    <p>{item.ItemName}</p>
-                                                                    {/* <span style={{ marginLeft: '8px' }} ><i>{item.ItemsDetails}</i></span> */}
+                                                            <tr key={item.Id} >
+                                                                <td className='no-border-bottom' >
+                                                                    {item.ItemName}
                                                                 </td>
-                                                                <td>
+                                                                <td className='no-border-bottom' >
                                                                     <Input
                                                                         type="number"
                                                                         value={quantities[item.Id]}
@@ -291,39 +295,63 @@ export default function GenerateInvoice() {
                                                                     />
                                                                 </td>
 
-                                                                <td>${item.UnitPrice}</td>
+                                                                <td className='no-border-bottom' >${item.UnitPrice}</td>
 
-                                                                <td>
+                                                                <td className='no-border-bottom' >
                                                                     ${finalPrice(item.UnitPrice, item.Tax, item.Discount, quantities[item.Id])}
                                                                 </td>
                                                             </tr>
                                                         ))}
 
+                                                        <tr >
+                                                            <td className='no-border-bottom' colSpan='2'></td>
+                                                            <td className='no-border-bottom' > <b>{t("Sub Total")}</b> </td>
+                                                            <td className='no-border-bottom' >${subTotal}</td>
+                                                        </tr>
+
+                                                        {selectedTax.map((tax) => {
+                                                            return (
+                                                                <tr>
+                                                                    <td colSpan='2' ></td>
+                                                                    <td >{tax?.TaxName}</td>
+                                                                    <td >${parseFloat((tax?.TaxRate / 100) * subTotal).toFixed(2)}</td>
+                                                                </tr>
+                                                            )
+                                                        })}
+
                                                         <tr className='no-border-bottom'>
-                                                            <td className='no-border' colSpan='2'></td>
-                                                            <th className='no-border'>Sub Total</th>
-                                                            <td className='no-border'>${subTotal}</td>
+                                                            <td className='no-border-bottom' colSpan='2' ></td>
+                                                            <td className='no-border-bottom' > <b>{t("Total Tax")}</b> </td>
+                                                            <td className='no-border-bottom' >${totalTax}</td>
                                                         </tr>
 
-                                                        <tr className='no-border'>
-                                                            <td colSpan='2' className='no-border'></td>
-                                                            <td className='no-border'>Total Tax</td>
-                                                            <td className='no-border'>${totalTax}</td>
-                                                        </tr>
-
-                                                        <tr className='no-border'>
-                                                            <td className='no-border' colSpan='2'></td>
-                                                            <th className='no-border'>GRAND TOTAL</th>
-                                                            <td className='no-border'>${grandTotal}</td>
+                                                        <tr >
+                                                            <td colSpan='2'></td>
+                                                            <td > <b>{t("GRAND TOTAL")}</b> </td>
+                                                            <td >${grandTotal}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                                {selectedBank || selectedTax.length > 0 ? (
+                                                    <>
+                                                        <div className='term'>
+                                                            <h4>{t("Terms and Conditions")}</h4>
+                                                            {selectedTerms.map((value) => {
+                                                                return (
+                                                                    <>
+                                                                        <p>{value?.TermsCondition}</p>
+                                                                    </>
+                                                                )
+                                                            })}
+                                                        </div>
+                                                    </>
+                                                ) : null}
                                             </div>
                                         )}
                                     </div>
 
                                     <FormButton text="Generate Invoice" />
-                                    <p className='form-para-goback' onClick={() => navigate('/home')}>Go Back</p>
+                                    <p className='form-para-goback' onClick={() => navigate('/home')}>{t("Go Back")}</p>
                                 </form>
                             </div>
                         </div>

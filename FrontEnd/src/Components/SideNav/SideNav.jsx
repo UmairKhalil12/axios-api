@@ -13,13 +13,11 @@ import { TbZoomMoneyFilled } from "react-icons/tb";
 import { MdAssignmentAdd } from "react-icons/md";
 import { FaClipboardList } from "react-icons/fa";
 import { MdAddTask } from "react-icons/md";
-import { MdDarkMode } from "react-icons/md";
-import { MdOutlineDarkMode } from "react-icons/md";
+import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import LanguageSelector from '../Language/LanguageSelector';
 import { useTranslation } from 'react-i18next';
 import { PiInvoiceBold } from "react-icons/pi";
-
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -30,7 +28,6 @@ const Sidebar = () => {
     const userType = userData.length > 0 ? userData[0].UserType : null;
 
     const color = useSelector(state => state.user.color);
-    //console.log(color);
 
     const changeColorMode = () => {
         dispatch(colorInfo(!color));
@@ -39,6 +36,7 @@ const Sidebar = () => {
     const handleSignout = () => {
         dispatch(userLogout(false));
         dispatch(userInfo([]));
+        navigate('/login');
     };
 
     const handleAddDataClick = () => {
@@ -72,7 +70,6 @@ const Sidebar = () => {
                     {open ? <p> <FaUser size={20} /> {userData[0].Name}</p> : <FaUser size={20} />}
                 </li>
 
-
                 <li onClick={() => navigate('/home')} className={isActiveRoute("/home") ? 'active' : ''} >
                     {open ? <p> <IoHomeSharp size={20} /> {t("Home")} </p> : <IoHomeSharp size={20} />}
                 </li>
@@ -85,67 +82,61 @@ const Sidebar = () => {
                     )}
                 </li>
 
-                {userType === 2 ?
-                    <li onClick={() => navigate('/showInvoice')} className={isActiveRoute("/showInvoice") ? 'active' : ''} >
-                        {open ? <p> <FaFileInvoiceDollar size={20} /> {t("Show Invoice")} </p> : <FaFileInvoiceDollar size={20} />}
-                    </li>
-                    : ''
-                }
+                {userType === 2 && (
+                    <>
+                        <li onClick={() => navigate('/showInvoice')} className={isActiveRoute("/showInvoice") ? 'active' : ''} >
+                            {open ? <p> <FaFileInvoiceDollar size={20} /> {t("Show Invoice")} </p> : <FaFileInvoiceDollar size={20} />}
+                        </li>
 
-                {userType === 2 ?
-                    <li onClick={() => navigate('/addInvoice')} className={isActiveRoute("/addInvoice") ? 'active' : ''} >
-                        {open ? <p> <MdAssignmentAdd size={20} /> {t("Add Invoice")} </p> : <MdAssignmentAdd size={20} />}
-                    </li>
-                    : ''
-                }
+                        <li onClick={() => navigate('/addInvoice')} className={isActiveRoute("/addInvoice") ? 'active' : ''} >
+                            {open ? <p> <MdAssignmentAdd size={20} /> {t("Add Invoice")} </p> : <MdAssignmentAdd size={20} />}
+                        </li>
 
-                {userType === 2 ?
-                    <li onClick={() => navigate('/showTax')} className={isActiveRoute("/showTax") ? 'active' : ''} >
-                        {open ? <p> <TbZoomMoneyFilled size={20} /> {t("Show Taxes")} </p> : <TbZoomMoneyFilled size={20} />}
-                    </li>
-                    : ''
-                }
+                        <li onClick={() => navigate('/showTax')} className={isActiveRoute("/showTax") ? 'active' : ''} >
+                            {open ? <p> <TbZoomMoneyFilled size={20} /> {t("Show Taxes")} </p> : <TbZoomMoneyFilled size={20} />}
+                        </li>
 
-                {userType === 2 ?
-                    <li onClick={() => navigate('/addTax')} className={isActiveRoute("/addTax") ? 'active' : ''} >
-                        {open ? <p> <IoBagAdd size={20} /> {t("Add Taxes")} </p> : <IoBagAdd size={20} />}
-                    </li>
-                    : ''
-                }
+                        <li onClick={() => navigate('/addTax')} className={isActiveRoute("/addTax") ? 'active' : ''} >
+                            {open ? <p> <IoBagAdd size={20} /> {t("Add Taxes")} </p> : <IoBagAdd size={20} />}
+                        </li>
 
-                {userType === 2 ?
-                    <li onClick={() => navigate('/showTerms')} className={isActiveRoute("/showTerms") ? 'active' : ''}>
-                        {open ? <p> <FaClipboardList size={20} /> {t("Show Terms")} </p> : <FaClipboardList size={20} />}
-                    </li>
-                    : ''
-                }
-                {userType === 2 ?
-                    <li onClick={() => navigate('/addTerms')} className={isActiveRoute("/addTerms") ? 'active' : ''} >
-                        {open ? <p> <MdAddTask size={20} /> {t("Add Terms")} </p> : <MdAddTask size={20} />}
-                    </li>
-                    : ''
-                }
+                        <li onClick={() => navigate('/showTerms')} className={isActiveRoute("/showTerms") ? 'active' : ''}>
+                            {open ? <p> <FaClipboardList size={20} /> {t("Show Terms")} </p> : <FaClipboardList size={20} />}
+                        </li>
 
+                        <li onClick={() => navigate('/addTerms')} className={isActiveRoute("/addTerms") ? 'active' : ''} >
+                            {open ? <p> <MdAddTask size={20} /> {t("Add Terms")} </p> : <MdAddTask size={20} />}
+                        </li>
+                    </>
+                )}
+
+                <li onClick={() => navigate("/generateInvoice")} className={isActiveRoute("/generateInvoice") ? 'active' : ''} >
+                    {open ? <p> <PiInvoiceBold size={20} /> Generate Invoice</p> : <PiInvoiceBold size={20} />}
+                </li>
 
                 <li onClick={handleSignout}>
-                    {open ? <p> <PiSignOutBold size={25} /> {t("Sign Out")}</p> : <PiSignOutBold size={25} />}
+                    {open ? <p> <PiSignOutBold size={20} /> {t("Sign Out")}</p> : <PiSignOutBold size={20} />}
                 </li>
 
-                {color ?
-                    <li onClick={changeColorMode}>
-                        {open ? <p> <MdDarkMode size={20} /> {t("Enable Light Mode")} </p> : <MdDarkMode size={20} />}
-                    </li>
-                    :
-                    <li onClick={changeColorMode}>
-                        {open ? <p> <MdOutlineDarkMode size={20} /> {t("Enable Dark Mode")} </p> : <MdOutlineDarkMode size={20} />}
-                    </li>
-                }
-
-                <li onClick={() => navigate("/generateInvoice")}>
-                    {open ? <p> <PiInvoiceBold size={20} />   Generate Invoice</p> : <PiInvoiceBold size={20} />}
+                <li onClick={changeColorMode}>
+                    {open ? (
+                        <p>
+                            {color ? (
+                                <>
+                                    <MdDarkMode size={20} /> {t("Enable Light Mode")}
+                                </>
+                            ) : (
+                                <>
+                                    <MdOutlineDarkMode size={20} /> {t("Enable Dark Mode")}
+                                </>
+                            )}
+                        </p>
+                    ) : (
+                        color ? <MdDarkMode size={20} /> : <MdOutlineDarkMode size={20} />
+                    )}
                 </li>
 
-                <li >
+                <li>
                     {open ? <p> <LanguageSelector />  </p> : <LanguageSelector />}
                 </li>
             </ul>
